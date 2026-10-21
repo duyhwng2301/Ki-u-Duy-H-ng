@@ -12,7 +12,8 @@
 | **Năm sinh** | 23/01/2005 (21 tuổi) |
 | **Mã sinh viên** | **DTC235200372** |
 | **Quê quán** | Thái Nguyên, Việt Nam |
-| **Học vấn** | Sinh viên ngành Công nghệ Thông tin / Kỹ thuật Phần mềm (ICTU Thái Nguyên) |
+| **Học vấn** | Sinh viên năm 4 - Khoa Công nghệ Thông tin (ICTU Thái Nguyên) |
+| **Điện thoại** | **0395 317 625** |
 | **Định hướng** | Thực tập sinh / Junior Frontend Developer |
 | **Email** | [kieuduyhung2301@gmail.com](mailto:kieuduyhung2301@gmail.com) |
 | **GitHub** | [github.com/duyhwng2301](https://github.com/duyhwng2301) |
