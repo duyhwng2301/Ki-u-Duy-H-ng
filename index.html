@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiều Duy Hưng - Hồ Sơ Năng Lực (Interactive CV)</title>
-  <meta name="description" content="CV cá nhân trực tuyến của Kiều Duy Hưng - Sinh viên Công nghệ Thông tin, Mã SV DTC235200372, Thái Nguyên. Hỗ trợ song ngữ, đa chủ đề và tối ưu in ấn PDF.">
+  <title>Kiều Duy Hưng - Interactive High-Tech Digital CV</title>
+  <meta name="description" content="Hồ sơ năng lực cá nhân trực tuyến của Kiều Duy Hưng - Sinh viên năm 4 Khoa Công nghệ Thông tin (ICTU Thái Nguyên), Mã SV DTC235200372, SĐT 0395 317 625. Giao diện công nghệ cao, đa chủ đề, terminal dev mode và tối ưu in ấn PDF.">
   <link rel="icon" type="image/png" href="avatar.png">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS -->
+  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="cv.css">
 </head>
 <body>
+
+  <!-- ==================== PARTICLES CANVAS BACKGROUND ==================== -->
+  <canvas id="techCanvas"></canvas>
 
   <!-- ==================== TOP FLOATING CONTROL BAR ==================== -->
   <header class="control-bar" id="topControlBar">
@@ -24,15 +27,38 @@
         <span class="pulse-dot"></span>
         <span data-vi="Sẵn sàng làm việc / Thực tập" data-en="Open to Work / Internship">Sẵn sàng làm việc / Thực tập</span>
       </div>
+
+      <!-- Quick Nav Pills -->
+      <nav class="nav-pills">
+        <a href="#about" class="nav-pill-link" data-vi="# Giới thiệu" data-en="# About"># Giới thiệu</a>
+        <a href="#skills" class="nav-pill-link" data-vi="# Kỹ năng" data-en="# Skills"># Kỹ năng</a>
+        <a href="#education" class="nav-pill-link" data-vi="# Học vấn" data-en="# Education"># Học vấn</a>
+        <a href="#projects" class="nav-pill-link" data-vi="# Dự án" data-en="# Projects"># Dự án</a>
+      </nav>
     </div>
 
     <div class="control-right">
+      <!-- Dev Terminal Trigger Button -->
+      <button class="btn btn-cyber" id="terminalBtn" title="Mở Developer Terminal">
+        <span>&gt;_</span> <span>Terminal</span>
+      </button>
+
+      <!-- Particle FX Toggle -->
+      <button class="btn btn-outline" id="fxToggleBtn" title="Bật/Tắt hiệu ứng hạt mạng lưới">
+        <span>⚡ FX</span>
+      </button>
+
+      <!-- Sound Toggle -->
+      <button class="btn btn-outline" id="sfxToggleBtn" title="Bật/Tắt âm thanh tương tác">
+        <span id="sfxIcon">🔊</span>
+      </button>
+
       <!-- Color Accent Picker -->
       <div class="color-picker" title="Chọn màu chủ đạo / Color Accent">
-        <div class="color-dot dot-blue active" data-color="blue" title="Xanh Công Nghệ (Blue)"></div>
-        <div class="color-dot dot-violet" data-color="violet" title="Tím Sáng Tạo (Violet)"></div>
-        <div class="color-dot dot-emerald" data-color="emerald" title="Xanh Lục Bảo (Emerald)"></div>
-        <div class="color-dot dot-rose" data-color="rose" title="Hồng Đam Mê (Rose)"></div>
+        <div class="color-dot dot-blue active" data-color="blue" title="Cyber Blue"></div>
+        <div class="color-dot dot-violet" data-color="violet" title="Neon Violet"></div>
+        <div class="color-dot dot-emerald" data-color="emerald" title="Emerald Green"></div>
+        <div class="color-dot dot-rose" data-color="rose" title="Cyber Rose"></div>
       </div>
 
       <!-- Language Toggle -->
@@ -42,7 +68,7 @@
 
       <!-- Theme Toggle -->
       <button class="btn btn-outline" id="themeToggleBtn" title="Chuyển đổi Sáng / Tối">
-        <span id="themeIcon">🌙</span> <span id="themeText" data-vi="Chế độ tối" data-en="Dark Mode">Chế độ tối</span>
+        <span id="themeIcon">☀️</span> <span id="themeText" data-vi="Chế độ sáng" data-en="Light Mode">Chế độ sáng</span>
       </button>
 
       <!-- QR Code Button -->
@@ -61,10 +87,11 @@
   <main class="cv-container" id="cvContainer">
 
     <!-- ==================== LEFT SIDEBAR ==================== -->
-    <aside class="cv-sidebar">
+    <aside class="cv-sidebar" id="about">
 
-      <!-- Profile Avatar & Title -->
+      <!-- Profile Avatar & Real Portrait -->
       <div class="profile-box">
+        <span class="profile-tag">&lt;dev/&gt; KIỀU DUY HƯNG</span>
         <div class="avatar-wrapper" id="avatarWrapper" title="Nhấp để xem ảnh đầy đủ">
           <img src="avatar.png" alt="Kiều Duy Hưng - Chân dung" class="avatar-img" id="avatarImg" onerror="this.src='assets/avatar.png'">
           <div class="avatar-status-badge" title="Đang hoạt động"></div>
@@ -73,21 +100,43 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
           <span data-vi="Nhấp để phóng to ảnh" data-en="Click to enlarge photo">Nhấp để phóng to ảnh</span>
         </div>
+
         <h1 class="profile-fullname">Kiều Duy Hưng</h1>
-        <div class="profile-headline" data-vi="Sinh viên năm 4 - Khoa Công nghệ Thông tin" data-en="Senior Student - Faculty of Information Technology">Sinh viên năm 4 - Khoa Công nghệ Thông tin</div>
-        <div class="profile-subheadline" data-vi="Định hướng: Frontend Developer" data-en="Focus: Frontend Developer">Định hướng: Frontend Developer</div>
+
+        <!-- Typewriter Dynamic Role Display -->
+        <div class="typewriter-box">
+          <span id="typewriterText" class="typewriter-text">Sinh viên năm 4 - Khoa Công nghệ Thông tin</span>
+        </div>
+
+        <div class="profile-subheadline" data-vi="Định hướng: Frontend Developer & UI/UX" data-en="Focus: Frontend Developer & UI/UX">
+          Định hướng: Frontend Developer & UI/UX
+        </div>
       </div>
 
       <!-- Contact Information -->
-      <section class="side-block">
+      <section class="side-block" id="contact">
         <div class="side-header">
           <div class="side-header-left">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            <span data-vi="Thông tin cá nhân" data-en="Personal Details">Thông tin cá nhân</span>
+            <span data-vi="Thông tin liên hệ" data-en="Contact Details">Thông tin liên hệ</span>
           </div>
         </div>
 
         <ul class="contact-list">
+          <!-- Điện thoại (0395 317 625) -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">📞</div>
+              <div class="contact-content">
+                <span class="contact-label" data-vi="Điện thoại" data-en="Phone">Điện thoại</span>
+                <span class="contact-value"><a href="tel:0395317625">0395 317 625</a></span>
+              </div>
+            </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="0395317625" title="Sao chép số điện thoại">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
+          </li>
+
           <!-- Ngày sinh -->
           <li class="contact-row">
             <div class="contact-left">
@@ -141,20 +190,6 @@
             </button>
           </li>
 
-          <!-- Điện thoại -->
-          <li class="contact-row">
-            <div class="contact-left">
-              <div class="contact-icon">📞</div>
-              <div class="contact-content">
-                <span class="contact-label" data-vi="Điện thoại" data-en="Phone">Điện thoại</span>
-                <span class="contact-value"><a href="tel:0395317625">0395 317 625</a></span>
-              </div>
-            </div>
-            <button class="copy-mini-btn copy-trigger" data-copy-text="0395317625" title="Sao chép số điện thoại">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            </button>
-          </li>
-
           <!-- GitHub Profile -->
           <li class="contact-row">
             <div class="contact-left">
@@ -172,11 +207,11 @@
       </section>
 
       <!-- Skills Section with Filter Tabs -->
-      <section class="side-block">
+      <section class="side-block" id="skills">
         <div class="side-header">
           <div class="side-header-left">
             <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-            <span data-vi="Kỹ năng năng lực" data-en="Skill Competence">Kỹ năng năng lực</span>
+            <span data-vi="Kỹ năng chuyên môn" data-en="Technical Competence">Kỹ năng chuyên môn</span>
           </div>
         </div>
 
@@ -222,7 +257,7 @@
 
           <div class="skill-item" data-category="tools">
             <div class="skill-item-info">
-              <span>VS Code / Chrome DevTools</span>
+              <span>VS Code & Chrome DevTools</span>
               <span class="skill-item-level">80%</span>
             </div>
             <div class="skill-track"><div class="skill-fill" style="width: 80%;"></div></div>
@@ -267,8 +302,8 @@
           <span class="block-icon">🎯</span>
           <span data-vi="Mục tiêu nghề nghiệp" data-en="Career Objective">Mục tiêu nghề nghiệp</span>
         </h2>
-        <div class="objective-card" data-vi="Là sinh viên năm 4 Khoa Công nghệ Thông tin đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng." data-en="A dedicated senior student from the Faculty of Information Technology with a strong eye for UI aesthetics and solid foundations in web development. I am seeking an <strong>Internship / Junior Frontend Developer</strong> position to apply HTML5, CSS3, and modern JavaScript in building real-world software products, adopting professional Agile/Scrum workflows, and elevating user experience.">
-          Là sinh viên năm 4 Khoa Công nghệ Thông tin đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng.
+        <div class="objective-card" data-vi="Là <strong>sinh viên năm 4 Khoa Công nghệ Thông tin</strong> đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng." data-en="A dedicated <strong>senior student from the Faculty of Information Technology</strong> with a strong eye for UI aesthetics and solid foundations in web development. I am seeking an <strong>Internship / Junior Frontend Developer</strong> position to apply HTML5, CSS3, and modern JavaScript in building real-world software products, adopting professional Agile/Scrum workflows, and elevating user experience.">
+          Là <strong>sinh viên năm 4 Khoa Công nghệ Thông tin</strong> đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng.
         </div>
       </div>
 
@@ -292,8 +327,30 @@
         </div>
       </div>
 
+      <!-- GitHub Activity Heatmap Simulation -->
+      <div class="github-heatmap-box">
+        <div class="heatmap-header">
+          <span>🐙 GitHub Activity Matrix • duyhwng2301</span>
+          <span style="color:var(--primary); font-family:var(--font-mono); font-size:0.76rem;">420+ Contributions in 2026</span>
+        </div>
+        <div class="heatmap-grid" id="githubHeatmapGrid">
+          <!-- Populated by script.js -->
+        </div>
+        <div class="heatmap-footer">
+          <span>Ít hoạt động</span>
+          <div style="display:flex; align-items:center; gap:3px;">
+            <div class="heat-cell"></div>
+            <div class="heat-cell heat-l1"></div>
+            <div class="heat-cell heat-l2"></div>
+            <div class="heat-cell heat-l3"></div>
+            <div class="heat-cell heat-l4"></div>
+          </div>
+          <span>Nhiều đóng góp</span>
+        </div>
+      </div>
+
       <!-- Học vấn & Đào tạo -->
-      <div class="main-block">
+      <div class="main-block" id="education">
         <h2 class="block-title">
           <span class="block-icon">🎓</span>
           <span data-vi="Học vấn & Đào tạo" data-en="Education & Training">Học vấn & Đào tạo</span>
@@ -329,7 +386,7 @@
       </div>
 
       <!-- Dự án thực tế (Interactive Cards with Modal Details) -->
-      <div class="main-block">
+      <div class="main-block" id="projects">
         <h2 class="block-title">
           <span class="block-icon">🚀</span>
           <span data-vi="Dự án tiêu biểu & Thực hành" data-en="Featured Projects">Dự án tiêu biểu & Thực hành</span>
@@ -363,14 +420,14 @@
               <h3 class="project-title">Kiều Duy Hưng Interactive CV</h3>
               <span class="project-type-tag">Personal Portfolio</span>
             </div>
-            <p class="project-summary" data-vi="Trang hồ sơ năng lực số đa tương tác: tích hợp đổi 4 bảng màu, song ngữ Anh-Việt, Dark/Light mode, xem ảnh phóng to, mã QR và in xuất PDF chuẩn A4." data-en="Digital resume & portfolio: 4 theme presets, bilingual EN/VI support, dark mode, high-res portrait lightbox, QR code and A4-standard PDF export.">
-              Trang hồ sơ năng lực số đa tương tác: tích hợp đổi 4 bảng màu, song ngữ Anh-Việt, Dark/Light mode, xem ảnh phóng to, mã QR và in xuất PDF chuẩn A4.
+            <p class="project-summary" data-vi="Hồ sơ năng lực số chuẩn công nghệ cao: Particle Canvas, Terminal Dev Mode, song ngữ Anh-Việt, 4 bảng màu, quét mã QR và in xuất PDF chuẩn A4." data-en="Digital resume & portfolio: Particle canvas, Terminal dev mode, 4 theme presets, bilingual EN/VI support, dark mode, high-res portrait, QR code and A4-standard PDF export.">
+              Hồ sơ năng lực số chuẩn công nghệ cao: Particle Canvas, Terminal Dev Mode, song ngữ Anh-Việt, 4 bảng màu, quét mã QR và in xuất PDF chuẩn A4.
             </p>
             <div class="project-tech-tags">
               <span class="tech-badge">Vanilla HTML5</span>
               <span class="tech-badge">Modern CSS Tokens</span>
-              <span class="tech-badge">Bilingual Engine</span>
-              <span class="tech-badge">Print Query</span>
+              <span class="tech-badge">Particle Engine</span>
+              <span class="tech-badge">Terminal CLI</span>
             </div>
             <div class="project-action-link">
               <span data-vi="Xem chi tiết tính năng" data-en="View feature breakdown">Xem chi tiết tính năng</span> →
@@ -383,8 +440,8 @@
               <h3 class="project-title" data-vi="Quản lý Sinh viên & Đề tài" data-en="Student Management Mini-App">Quản lý Sinh viên & Đề tài</h3>
               <span class="project-type-tag">Academic Project</span>
             </div>
-            <p class="project-summary" data-vi="Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan." data-en="Web-based student record tool: quick search by Student ID (DTC), academic grading metrics, and term project status tracking.">
-              Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan.
+            <p class="project-summary" data-vi="Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC235200372), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan." data-en="Web-based student record tool: quick search by Student ID (DTC235200372), academic grading metrics, and term project status tracking.">
+              Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC235200372), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan.
             </p>
             <div class="project-tech-tags">
               <span class="tech-badge">JavaScript</span>
@@ -413,17 +470,42 @@
   </main>
 
   <footer class="cv-bottom">
-    <p>© 2026 <strong>Kiều Duy Hưng</strong> • <span data-vi="Mã SV:" data-en="Student ID:">Mã SV:</span> DTC235200372 • Thái Nguyên, Việt Nam</p>
+    <p>© 2026 <strong>Kiều Duy Hưng</strong> • <span data-vi="Sinh viên năm 4 - Khoa CNTT" data-en="Senior Student - Faculty of IT">Sinh viên năm 4 - Khoa CNTT</span> • <span data-vi="Mã SV:" data-en="Student ID:">Mã SV:</span> DTC235200372 • Thái Nguyên, Việt Nam</p>
   </footer>
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- 1. Avatar Lightbox Modal -->
+  <!-- 1. Developer Terminal Modal -->
+  <div class="modal-overlay" id="modalTerminal">
+    <div class="modal-card terminal-modal-card">
+      <div class="terminal-header-bar">
+        <div class="terminal-mac-btns">
+          <span class="mac-btn mac-close" title="Đóng"></span>
+          <span class="mac-btn mac-min"></span>
+          <span class="mac-btn mac-max"></span>
+        </div>
+        <div class="terminal-title-text">hung@ictu-terminal: ~ (bash)</div>
+        <button class="modal-close-btn" style="position:static; width:24px; height:24px; font-size:0.9rem;" title="Đóng">&times;</button>
+      </div>
+      <div class="terminal-body" id="termBody">
+        <div class="term-output" id="termOutput">
+          <div class="term-cyan">=== CHÀO MỪNG ĐẾN VỚI TERMINAL KIỀU DUY HƯNG ===</div>
+          <div class="term-dim">Gõ <span class="term-green">'help'</span> để xem tất cả câu lệnh khả dụng (bio, skills, projects, contact, sudo hire, clear).</div>
+        </div>
+        <div class="term-input-row">
+          <span class="term-prompt">hung@ictu:~$</span>
+          <input type="text" class="term-input-field" id="termInput" placeholder="gõ lệnh tại đây (vd: help, bio, contact)..." autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Avatar Lightbox Modal -->
   <div class="modal-overlay" id="modalAvatar">
     <div class="modal-card" style="text-align: center;">
       <button class="modal-close-btn" title="Đóng">&times;</button>
       <h3 class="modal-title">Kiều Duy Hưng</h3>
-      <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;" data-vi="Chân dung cá nhân (2005 - 21 tuổi - Thái Nguyên)" data-en="Personal Portrait (Born 2005 - Thai Nguyen)">Chân dung cá nhân (2005 - 21 tuổi - Thái Nguyên)</p>
+      <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;" data-vi="Chân dung cá nhân (Sinh viên năm 4 Khoa CNTT - Thái Nguyên)" data-en="Personal Portrait (Senior Student - Faculty of IT)">Chân dung cá nhân (Sinh viên năm 4 Khoa CNTT - Thái Nguyên)</p>
       <img src="avatar.png" alt="Kiều Duy Hưng Full Portrait" class="avatar-lightbox-img" onerror="this.src='assets/avatar.png'">
       <div style="margin-top: 14px;">
         <a href="avatar.png" download="Kieu_Duy_Hung_Avatar.png" class="btn btn-outline">⬇️ <span data-vi="Tải ảnh về máy" data-en="Download Photo">Tải ảnh về máy</span></a>
@@ -431,7 +513,7 @@
     </div>
   </div>
 
-  <!-- 2. QR Code Modal -->
+  <!-- 3. QR Code Modal -->
   <div class="modal-overlay" id="modalQR">
     <div class="modal-card" style="text-align: center;">
       <button class="modal-close-btn" title="Đóng">&times;</button>
@@ -440,22 +522,17 @@
         Mở camera điện thoại hoặc Zalo để quét trực tiếp link GitHub Pages của Kiều Duy Hưng
       </p>
       <div class="qr-display-box">
-        <!-- High-contrast SVG QR Code pointing to GitHub Pages -->
         <svg width="190" height="190" viewBox="0 0 33 33" shape-rendering="crispEdges">
           <rect width="33" height="33" fill="#ffffff"/>
-          <!-- Position Detection Patterns (Top-Left) -->
           <rect x="2" y="2" width="7" height="7" fill="#0f172a"/>
           <rect x="3" y="3" width="5" height="5" fill="#ffffff"/>
           <rect x="4" y="4" width="3" height="3" fill="#0f172a"/>
-          <!-- Position Detection Patterns (Top-Right) -->
           <rect x="24" y="2" width="7" height="7" fill="#0f172a"/>
           <rect x="25" y="3" width="5" height="5" fill="#ffffff"/>
           <rect x="26" y="4" width="3" height="3" fill="#0f172a"/>
-          <!-- Position Detection Patterns (Bottom-Left) -->
           <rect x="2" y="24" width="7" height="7" fill="#0f172a"/>
           <rect x="3" y="25" width="5" height="5" fill="#ffffff"/>
           <rect x="4" y="26" width="3" height="3" fill="#0f172a"/>
-          <!-- Data modules pattern -->
           <rect x="11" y="2" width="2" height="1" fill="#0f172a"/>
           <rect x="15" y="2" width="3" height="1" fill="#0f172a"/>
           <rect x="20" y="2" width="2" height="1" fill="#0f172a"/>
@@ -499,18 +576,16 @@
     </div>
   </div>
 
-  <!-- 3. Dynamic Project Details Modal -->
+  <!-- 4. Dynamic Project Details Modal -->
   <div class="modal-overlay" id="modalProject">
     <div class="modal-card">
       <button class="modal-close-btn" title="Đóng">&times;</button>
       <h3 class="modal-title" id="projectModalTitle">Chi Tiết Dự Án</h3>
-      <div class="modal-content-body" id="projectModalBody">
-        <!-- Content injected dynamically by script.js -->
-      </div>
+      <div class="modal-content-body" id="projectModalBody"></div>
     </div>
   </div>
 
-  <!-- 4. Contact Message Modal -->
+  <!-- 5. Contact Message Modal -->
   <div class="modal-overlay" id="modalContact">
     <div class="modal-card">
       <button class="modal-close-btn" title="Đóng">&times;</button>
