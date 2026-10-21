@@ -3,343 +3,545 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Kiều Duy Hưng - Sinh viên Công nghệ Thông tin</title>
-  <meta name="description" content="Hồ sơ cá nhân (CV) của Kiều Duy Hưng - Sinh viên CNTT, mã SV DTC235200372, Thái Nguyên.">
-  
+  <title>Kiều Duy Hưng - Hồ Sơ Năng Lực (Interactive CV)</title>
+  <meta name="description" content="CV cá nhân trực tuyến của Kiều Duy Hưng - Sinh viên Công nghệ Thông tin, Mã SV DTC235200372, Thái Nguyên. Hỗ trợ song ngữ, đa chủ đề và tối ưu in ấn PDF.">
+  <link rel="icon" type="image/png" href="avatar.png">
+
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- CSS Stylesheet -->
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="cv.css">
 </head>
 <body>
 
-  <!-- ==================== ACTION BAR ==================== -->
-  <header class="action-bar" id="cvActionBar">
-    <div class="action-bar-title">
-      <span>📄 Hồ Sơ Năng Lực Cá Nhân</span>
-      <span class="badge">CV Chuyên Nghiệp</span>
+  <!-- ==================== TOP FLOATING CONTROL BAR ==================== -->
+  <header class="control-bar" id="topControlBar">
+    <div class="control-left">
+      <div class="live-badge">
+        <span class="pulse-dot"></span>
+        <span data-vi="Sẵn sàng làm việc / Thực tập" data-en="Open to Work / Internship">Sẵn sàng làm việc / Thực tập</span>
+      </div>
     </div>
-    <div class="action-buttons">
-      <button class="btn btn-outline" id="themeToggleBtn" title="Chuyển đổi chế độ Sáng / Tối">
-        <span id="themeIcon">🌙</span> <span id="themeText">Chế độ tối</span>
+
+    <div class="control-right">
+      <!-- Color Accent Picker -->
+      <div class="color-picker" title="Chọn màu chủ đạo / Color Accent">
+        <div class="color-dot dot-blue active" data-color="blue" title="Xanh Công Nghệ (Blue)"></div>
+        <div class="color-dot dot-violet" data-color="violet" title="Tím Sáng Tạo (Violet)"></div>
+        <div class="color-dot dot-emerald" data-color="emerald" title="Xanh Lục Bảo (Emerald)"></div>
+        <div class="color-dot dot-rose" data-color="rose" title="Hồng Đam Mê (Rose)"></div>
+      </div>
+
+      <!-- Language Toggle -->
+      <button class="btn btn-outline" id="langToggleBtn" title="Chuyển đổi ngôn ngữ Tiếng Việt / English">
+        <span>🌐</span> <span id="langText">English (EN)</span>
       </button>
-      <button class="btn btn-primary" id="printCvBtn" onclick="window.print()" title="In CV hoặc lưu file PDF">
-        🖨️ In / Lưu PDF
+
+      <!-- Theme Toggle -->
+      <button class="btn btn-outline" id="themeToggleBtn" title="Chuyển đổi Sáng / Tối">
+        <span id="themeIcon">🌙</span> <span id="themeText" data-vi="Chế độ tối" data-en="Dark Mode">Chế độ tối</span>
+      </button>
+
+      <!-- QR Code Button -->
+      <button class="btn btn-outline" id="qrBtn" title="Xem mã QR quét điện thoại">
+        <span>📱</span> <span data-vi="Mã QR" data-en="QR Code">Mã QR</span>
+      </button>
+
+      <!-- Print / PDF Button -->
+      <button class="btn btn-primary" onclick="window.print()" title="In CV hoặc lưu file PDF A4">
+        <span>🖨️</span> <span data-vi="In / Xuất PDF" data-en="Print / PDF">In / Xuất PDF</span>
       </button>
     </div>
   </header>
 
   <!-- ==================== MAIN CV CONTAINER ==================== -->
-  <main class="cv-wrapper" id="cvMainContainer">
-    
-    <!-- LEFT SIDEBAR -->
+  <main class="cv-container" id="cvContainer">
+
+    <!-- ==================== LEFT SIDEBAR ==================== -->
     <aside class="cv-sidebar">
-      
-      <!-- Avatar & Profile info -->
-      <div class="profile-avatar-wrap">
-        <div class="avatar" title="Kiều Duy Hưng">
-          KDH
-          <div class="avatar-status" title="Sẵn sàng làm việc / thực tập"></div>
+
+      <!-- Profile Avatar & Title -->
+      <div class="profile-box">
+        <div class="avatar-wrapper" id="avatarWrapper" title="Nhấp để xem ảnh đầy đủ">
+          <img src="avatar.png" alt="Kiều Duy Hưng - Chân dung" class="avatar-img" id="avatarImg" onerror="this.src='assets/avatar.png'">
+          <div class="avatar-status-badge" title="Đang hoạt động"></div>
         </div>
-        <h1 class="profile-name">Kiều Duy Hưng</h1>
-        <div class="profile-role">Sinh viên Công nghệ Thông tin</div>
+        <div class="avatar-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          <span data-vi="Nhấp để phóng to ảnh" data-en="Click to enlarge photo">Nhấp để phóng to ảnh</span>
+        </div>
+        <h1 class="profile-fullname">Kiều Duy Hưng</h1>
+        <div class="profile-headline" data-vi="Sinh viên Công nghệ Thông tin" data-en="IT Student & Software Engineer">Sinh viên Công nghệ Thông tin</div>
+        <div class="profile-subheadline" data-vi="Định hướng: Frontend Developer" data-en="Focus: Frontend Developer">Định hướng: Frontend Developer</div>
       </div>
 
-      <!-- Thông tin cá nhân -->
-      <section class="side-section">
-        <h2 class="side-title">
-          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-          Thông tin cá nhân
-        </h2>
-        <ul class="info-list">
-          <li class="info-item">
-            <div class="info-icon">🎂</div>
-            <div class="info-details">
-              <span class="info-label">Ngày sinh</span>
-              <span class="info-value">23/01/2005 (21 tuổi)</span>
+      <!-- Contact Information -->
+      <section class="side-block">
+        <div class="side-header">
+          <div class="side-header-left">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span data-vi="Thông tin cá nhân" data-en="Personal Details">Thông tin cá nhân</span>
+          </div>
+        </div>
+
+        <ul class="contact-list">
+          <!-- Ngày sinh -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">🎂</div>
+              <div class="contact-content">
+                <span class="contact-label" data-vi="Ngày sinh" data-en="Date of Birth">Ngày sinh</span>
+                <span class="contact-value" data-vi="23/01/2005 (21 tuổi)" data-en="23/01/2005 (21 yrs)">23/01/2005 (21 tuổi)</span>
+              </div>
             </div>
           </li>
-          <li class="info-item">
-            <div class="info-icon">🎓</div>
-            <div class="info-details">
-              <span class="info-label">Mã sinh viên</span>
-              <span class="info-value">DTC235200372</span>
+
+          <!-- Mã sinh viên -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">🎓</div>
+              <div class="contact-content">
+                <span class="contact-label" data-vi="Mã sinh viên" data-en="Student ID">Mã sinh viên</span>
+                <span class="contact-value">DTC235200372</span>
+              </div>
             </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="DTC235200372" title="Sao chép mã sinh viên">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
           </li>
-          <li class="info-item">
-            <div class="info-icon">📍</div>
-            <div class="info-details">
-              <span class="info-label">Quê quán</span>
-              <span class="info-value">Thái Nguyên, Việt Nam</span>
+
+          <!-- Quê quán -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">📍</div>
+              <div class="contact-content">
+                <span class="contact-label" data-vi="Quê quán" data-en="Hometown">Quê quán</span>
+                <span class="contact-value" data-vi="Thái Nguyên, Việt Nam" data-en="Thai Nguyen, Vietnam">Thái Nguyên, Việt Nam</span>
+              </div>
             </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="Thái Nguyên, Việt Nam" title="Sao chép quê quán">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
           </li>
-          <li class="info-item">
-            <div class="info-icon">📞</div>
-            <div class="info-details">
-              <span class="info-label">Điện thoại</span>
-              <span class="info-value"><a href="tel:0987654321">0987 654 321</a></span>
+
+          <!-- Email -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">✉️</div>
+              <div class="contact-content">
+                <span class="contact-label">Email</span>
+                <span class="contact-value"><a href="mailto:kieuduyhung2301@gmail.com">kieuduyhung2301@gmail.com</a></span>
+              </div>
             </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="kieuduyhung2301@gmail.com" title="Sao chép email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
           </li>
-          <li class="info-item">
-            <div class="info-icon">✉️</div>
-            <div class="info-details">
-              <span class="info-label">Email</span>
-              <span class="info-value"><a href="mailto:kieuduyhung.dev@gmail.com">kieuduyhung.dev@gmail.com</a></span>
+
+          <!-- Điện thoại -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">📞</div>
+              <div class="contact-content">
+                <span class="contact-label" data-vi="Điện thoại" data-en="Phone">Điện thoại</span>
+                <span class="contact-value"><a href="tel:0987654321">0987 654 321</a></span>
+              </div>
             </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="0987654321" title="Sao chép số điện thoại">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
           </li>
-          <li class="info-item">
-            <div class="info-icon">🌐</div>
-            <div class="info-details">
-              <span class="info-label">GitHub</span>
-              <span class="info-value"><a href="https://github.com" target="_blank" rel="noopener">github.com/kieuduyhung</a></span>
+
+          <!-- GitHub Profile -->
+          <li class="contact-row">
+            <div class="contact-left">
+              <div class="contact-icon">🐙</div>
+              <div class="contact-content">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value"><a href="https://github.com/duyhwng2301" target="_blank" rel="noopener">github.com/duyhwng2301</a></span>
+              </div>
             </div>
+            <button class="copy-mini-btn copy-trigger" data-copy-text="https://github.com/duyhwng2301" title="Sao chép link GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
           </li>
         </ul>
       </section>
 
-      <!-- Kỹ năng chuyên môn -->
-      <section class="side-section">
-        <h2 class="side-title">
-          <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-          Kỹ năng chuyên môn
-        </h2>
-        <div class="skills-group">
-          <div class="skill-row">
-            <div class="skill-header">
-              <span>HTML5 & Semantic Web</span>
-              <span class="skill-pct">85%</span>
-            </div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-header">
-              <span>CSS3 / Flexbox / Grid / Responsive</span>
-              <span class="skill-pct">80%</span>
-            </div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-header">
-              <span>JavaScript (ES6+) & DOM</span>
-              <span class="skill-pct">75%</span>
-            </div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%;"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-header">
-              <span>Git & Quản lý phiên bản</span>
-              <span class="skill-pct">70%</span>
-            </div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+      <!-- Skills Section with Filter Tabs -->
+      <section class="side-block">
+        <div class="side-header">
+          <div class="side-header-left">
+            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+            <span data-vi="Kỹ năng năng lực" data-en="Skill Competence">Kỹ năng năng lực</span>
           </div>
         </div>
-      </section>
 
-      <!-- Kỹ năng mềm & Công cụ -->
-      <section class="side-section">
-        <h2 class="side-title">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          Kỹ năng mềm
-        </h2>
-        <div class="badges-cloud">
-          <span class="badge-pill">Làm việc nhóm</span>
-          <span class="badge-pill">Tư duy logic</span>
-          <span class="badge-pill">Tự học & Nghiên cứu</span>
-          <span class="badge-pill">Quản lý thời gian</span>
-          <span class="badge-pill">Giao tiếp tốt</span>
-          <span class="badge-pill">Tinh thần trách nhiệm</span>
+        <div class="skills-filter-tabs">
+          <button class="skill-tab-btn active" data-filter="all" data-vi="Tất cả" data-en="All">Tất cả</button>
+          <button class="skill-tab-btn" data-filter="tech">Frontend</button>
+          <button class="skill-tab-btn" data-filter="tools" data-vi="Công cụ" data-en="Tools">Công cụ</button>
+          <button class="skill-tab-btn" data-filter="soft" data-vi="Mềm" data-en="Soft">Mềm</button>
+        </div>
+
+        <div class="skills-container">
+          <div class="skill-item" data-category="tech">
+            <div class="skill-item-info">
+              <span>HTML5 & Semantic Web</span>
+              <span class="skill-item-level">88%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 88%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="tech">
+            <div class="skill-item-info">
+              <span>CSS3 / Flexbox / Grid / Anim</span>
+              <span class="skill-item-level">85%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 85%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="tech">
+            <div class="skill-item-info">
+              <span>JavaScript ES6+ / DOM API</span>
+              <span class="skill-item-level">78%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 78%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="tools">
+            <div class="skill-item-info">
+              <span>Git, GitHub & Version Control</span>
+              <span class="skill-item-level">75%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 75%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="tools">
+            <div class="skill-item-info">
+              <span>VS Code / Chrome DevTools</span>
+              <span class="skill-item-level">80%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 80%;"></div></div>
+          </div>
+        </div>
+
+        <div class="tag-cloud" style="margin-top: 6px;">
+          <span class="skill-pill" data-category="soft" data-vi="Làm việc nhóm" data-en="Teamwork">Làm việc nhóm</span>
+          <span class="skill-pill" data-category="soft" data-vi="Tư duy phản biện" data-en="Critical Thinking">Tư duy phản biện</span>
+          <span class="skill-pill" data-category="soft" data-vi="Khả năng tự học" data-en="Self-Learning">Khả năng tự học</span>
+          <span class="skill-pill" data-category="soft" data-vi="Quản lý thời gian" data-en="Time Management">Quản lý thời gian</span>
+          <span class="skill-pill" data-category="tools">Responsive Design</span>
+          <span class="skill-pill" data-category="tools">RESTful API Basic</span>
+          <span class="skill-pill" data-category="soft" data-vi="Trách nhiệm cao" data-en="Accountability">Trách nhiệm cao</span>
         </div>
       </section>
 
       <!-- Sở thích cá nhân -->
-      <section class="side-section">
-        <h2 class="side-title">
-          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          Sở thích
-        </h2>
-        <div class="badges-cloud">
-          <span class="badge-pill">⚽ Bóng đá</span>
-          <span class="badge-pill">💻 Lập trình web</span>
-          <span class="badge-pill">🎵 Nghe nhạc</span>
-          <span class="badge-pill">🎮 Thể thao điện tử</span>
-          <span class="badge-pill">📚 Đọc sách công nghệ</span>
+      <section class="side-block">
+        <div class="side-header">
+          <div class="side-header-left">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span data-vi="Sở thích cá nhân" data-en="Personal Interests">Sở thích cá nhân</span>
+          </div>
+        </div>
+        <div class="tag-cloud">
+          <span class="skill-pill" data-vi="⚽ Đam mê Bóng đá" data-en="⚽ Football & Tactics">⚽ Đam mê Bóng đá</span>
+          <span class="skill-pill" data-vi="💻 Thích Lập trình Web" data-en="💻 Web Development">💻 Thích Lập trình Web</span>
+          <span class="skill-pill" data-vi="🎵 Nghe nhạc Acoustic" data-en="🎵 Acoustic Music">🎵 Nghe nhạc Acoustic</span>
+          <span class="skill-pill" data-vi="🎮 Thể thao điện tử" data-en="🎮 eSports">🎮 Thể thao điện tử</span>
         </div>
       </section>
 
     </aside>
 
-    <!-- RIGHT MAIN CONTENT -->
-    <section class="cv-main">
-      
-      <!-- Giới thiệu & Mục tiêu nghề nghiệp -->
-      <div class="main-section">
-        <h2 class="section-heading">
-          <span class="section-heading-icon">🎯</span>
-          Mục tiêu nghề nghiệp
+    <!-- ==================== RIGHT MAIN CONTENT ==================== -->
+    <section class="cv-content">
+
+      <!-- Mục tiêu nghề nghiệp -->
+      <div class="main-block">
+        <h2 class="block-title">
+          <span class="block-icon">🎯</span>
+          <span data-vi="Mục tiêu nghề nghiệp" data-en="Career Objective">Mục tiêu nghề nghiệp</span>
         </h2>
-        <div class="objective-box">
-          Là một sinh viên ngành Công nghệ Thông tin đam mê lập trình và xây dựng giao diện web thân thiện, hiện đại. Tôi mong muốn tìm kiếm cơ hội <strong>Thực tập sinh / Junior Frontend Developer</strong> để áp dụng các kiến thức đã học về HTML, CSS, JavaScript, đồng thời học hỏi thêm quy trình phát triển sản phẩm thực tế và nâng cao năng lực chuyên môn để đóng góp hiệu quả cho công ty.
+        <div class="objective-card" data-vi="Là sinh viên ngành Công nghệ Thông tin đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng." data-en="An enthusiastic IT student with a strong eye for UI aesthetics and solid foundations in web development. I am seeking an <strong>Internship / Junior Frontend Developer</strong> position to apply HTML5, CSS3, and modern JavaScript in building real-world software products, adopting professional Agile/Scrum workflows, and elevating user experience.">
+          Là sinh viên ngành Công nghệ Thông tin đầy nhiệt huyết với tư duy thẩm mỹ và nền tảng lập trình web vững chắc. Tôi hướng tới vị trí <strong>Thực tập sinh / Junior Frontend Developer</strong> nhằm áp dụng kiến thức HTML5, CSS3, JavaScript vào các sản phẩm thực tế, học hỏi quy trình Agile/Scrum chuyên nghiệp và góp phần xây dựng giao diện tối ưu trải nghiệm người dùng.
         </div>
       </div>
 
-      <!-- Tóm tắt năng lực -->
-      <div class="highlight-grid">
-        <div class="highlight-box">
-          <div class="highlight-number">21</div>
-          <div class="highlight-label">Tuổi nhiệt huyết</div>
+      <!-- Stat Highlights Cards -->
+      <div class="stat-cards-grid">
+        <div class="stat-card">
+          <div class="stat-number">21</div>
+          <div class="stat-text" data-vi="Tuổi trẻ nhiệt huyết" data-en="Years of Age">Tuổi trẻ nhiệt huyết</div>
         </div>
-        <div class="highlight-box">
-          <div class="highlight-number">100%</div>
-          <div class="highlight-label">Tinh thần học hỏi</div>
+        <div class="stat-card">
+          <div class="stat-number">Năm 2</div>
+          <div class="stat-text" data-vi="Đang học Đại học" data-en="Sophomore Year">Đang học Đại học</div>
         </div>
-        <div class="highlight-box">
-          <div class="highlight-number">2+</div>
-          <div class="highlight-label">Dự án thực hành</div>
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-text" data-vi="Dự án thực tế" data-en="Hands-on Projects">Dự án thực tế</div>
         </div>
-      </div>
-
-      <!-- Quá trình học vấn -->
-      <div class="main-section">
-        <h2 class="section-heading">
-          <span class="section-heading-icon">🎓</span>
-          Học vấn & Đào tạo
-        </h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3 class="timeline-title">Đại học Công nghệ Thông tin & Truyền thông Thái Nguyên</h3>
-              <span class="timeline-date">2023 - Hiện tại</span>
-            </div>
-            <div class="timeline-subtitle">Chuyên ngành: Công nghệ Thông tin / Kỹ thuật Phần mềm</div>
-            <p class="timeline-desc">
-              - <strong>Mã sinh viên:</strong> DTC235200372<br>
-              - <strong>Tình trạng:</strong> Đang theo học năm 2, hoàn thành tốt các học phần cốt lõi về cấu trúc dữ liệu, giải thuật, lập trình web căn bản và cơ sở dữ liệu.<br>
-              - Tích cực tham gia các hoạt động nghiên cứu khoa học và câu lạc bộ học thuật.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3 class="timeline-title">Trường THPT tại Thái Nguyên</h3>
-              <span class="timeline-date">2020 - 2023</span>
-            </div>
-            <div class="timeline-subtitle">Tốt nghiệp THPT</div>
-            <p class="timeline-desc">Tốt nghiệp loại Khá - Giỏi, đạt điểm cao các môn Toán, Tin học và Vật lý.</p>
-          </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-text" data-vi="Tinh thần cầu tiến" data-en="Commitment">Tinh thần cầu tiến</div>
         </div>
       </div>
 
-      <!-- Dự án tiêu biểu -->
-      <div class="main-section">
-        <h2 class="section-heading">
-          <span class="section-heading-icon">🚀</span>
-          Dự án tiêu biểu & Thực hành
+      <!-- Học vấn & Đào tạo -->
+      <div class="main-block">
+        <h2 class="block-title">
+          <span class="block-icon">🎓</span>
+          <span data-vi="Học vấn & Đào tạo" data-en="Education & Training">Học vấn & Đào tạo</span>
         </h2>
-        <div class="projects-grid">
+        <div class="edu-timeline">
           
-          <div class="project-card">
-            <div class="project-card-header">
-              <h3 class="project-card-title">FootAI - Trợ Lý Thể Thao & Sa Bàn</h3>
-              <span class="project-card-badge">Web App</span>
+          <div class="timeline-entry">
+            <div class="timeline-top">
+              <h3 class="timeline-school" data-vi="Trường Đại học Công nghệ Thông tin & Truyền thông - ĐH Thái Nguyên (ICTU)" data-en="Thai Nguyen University of Information & Communication Technology (ICTU)">Trường Đại học Công nghệ Thông tin & Truyền thông - ĐH Thái Nguyên (ICTU)</h3>
+              <span class="timeline-badge">2023 - 2027</span>
             </div>
-            <p class="project-card-desc">
-              Ứng dụng web hiển thị tỷ số trực tiếp, sa bàn tương tác kéo thả chiến thuật bóng đá (4-3-3, 4-2-3-1), phân tích dữ liệu chỉ số cầu thủ và bảng xếp hạng.
+            <div class="timeline-major" data-vi="Chuyên ngành: Công nghệ Thông tin / Kỹ thuật Phần mềm" data-en="Major: Information Technology / Software Engineering">Chuyên ngành: Công nghệ Thông tin / Kỹ thuật Phần mềm</div>
+            <ul class="timeline-notes">
+              <li><strong data-vi="Mã số sinh viên:" data-en="Student ID:">Mã số sinh viên:</strong> <strong>DTC235200372</strong></li>
+              <li data-vi="Hoàn thành tốt các môn nền tảng: Cấu trúc dữ liệu & Giải thuật, Cơ sở dữ liệu quan hệ, Lập trình hướng đối tượng, Thiết kế Web căn bản & nâng cao." data-en="Successfully completed core courses: Data Structures & Algorithms, Relational Databases, OOP, Fundamental & Advanced Web Design.">Hoàn thành tốt các môn nền tảng: Cấu trúc dữ liệu & Giải thuật, Cơ sở dữ liệu quan hệ, Lập trình hướng đối tượng, Thiết kế Web căn bản & nâng cao.</li>
+              <li data-vi="Điểm trung bình tích lũy đạt mức Khá - Giỏi, chủ động xây dựng nhiều bài tập lớn ứng dụng thực tiễn." data-en="Maintained Good/Very Good GPA, actively designed several practical semester term projects.">Điểm trung bình tích lũy đạt mức Khá - Giỏi, chủ động xây dựng nhiều bài tập lớn ứng dụng thực tiễn.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-top">
+              <h3 class="timeline-school" data-vi="Trường THPT tại Tỉnh Thái Nguyên" data-en="High School in Thai Nguyen Province">Trường THPT tại Tỉnh Thái Nguyên</h3>
+              <span class="timeline-badge">2020 - 2023</span>
+            </div>
+            <div class="timeline-major" data-vi="Bằng Tốt nghiệp Trung học Phổ thông" data-en="High School Diploma">Bằng Tốt nghiệp Trung học Phổ thông</div>
+            <ul class="timeline-notes">
+              <li data-vi="Tốt nghiệp loại Khá - Giỏi; điểm các môn Toán học, Vật lý và Tin học luôn đạt trên 8.0." data-en="Graduated with honors; scored 8.0+ in Mathematics, Physics, and Computer Science.">Tốt nghiệp loại Khá - Giỏi; điểm các môn Toán học, Vật lý và Tin học luôn đạt trên 8.0.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dự án thực tế (Interactive Cards with Modal Details) -->
+      <div class="main-block">
+        <h2 class="block-title">
+          <span class="block-icon">🚀</span>
+          <span data-vi="Dự án tiêu biểu & Thực hành" data-en="Featured Projects">Dự án tiêu biểu & Thực hành</span>
+        </h2>
+        
+        <div class="projects-container">
+          
+          <!-- Project 1: FootAI -->
+          <div class="project-box open-project-modal" data-project="footai" title="Nhấp để xem chi tiết dự án FootAI">
+            <div class="project-top-row">
+              <h3 class="project-title">FootAI Master</h3>
+              <span class="project-type-tag">Web Application</span>
+            </div>
+            <p class="project-summary" data-vi="Ứng dụng trợ lý bóng đá thông minh: bảng tỉ số thời gian thực, sa bàn chiến thuật kéo thả (4-3-3, 4-2-3-1), phân tích xG và so sánh cầu thủ chuyên nghiệp." data-en="Interactive smart football platform: real-time livescore, drag-and-drop tactics board (4-3-3, 4-2-3-1), xG stats and head-to-head player comparisons.">
+              Ứng dụng trợ lý bóng đá thông minh: bảng tỉ số thời gian thực, sa bàn chiến thuật kéo thả (4-3-3, 4-2-3-1), phân tích xG và so sánh cầu thủ chuyên nghiệp.
             </p>
-            <div class="project-card-tech">
-              <span class="tech-tag">HTML5</span>
-              <span class="tech-tag">CSS3 (Grid/Flex)</span>
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Local Storage</span>
+            <div class="project-tech-tags">
+              <span class="tech-badge">HTML5</span>
+              <span class="tech-badge">CSS Grid/Flex</span>
+              <span class="tech-badge">JavaScript ES6</span>
+              <span class="tech-badge">Drag & Drop</span>
+            </div>
+            <div class="project-action-link">
+              <span data-vi="Xem chi tiết & Demo" data-en="View details & Demo">Xem chi tiết & Demo</span> →
             </div>
           </div>
 
-          <div class="project-card">
-            <div class="project-card-header">
-              <h3 class="project-card-title">Personal CV & Portfolio Website</h3>
-              <span class="project-card-badge">Cá nhân</span>
+          <!-- Project 2: Interactive Portfolio -->
+          <div class="project-box open-project-modal" data-project="portfolio" title="Nhấp để xem chi tiết CV Portfolio">
+            <div class="project-top-row">
+              <h3 class="project-title">Kiều Duy Hưng Interactive CV</h3>
+              <span class="project-type-tag">Personal Portfolio</span>
             </div>
-            <p class="project-card-desc">
-              Trang hồ sơ trực tuyến với giao diện chuẩn hiện đại, responsive đa thiết bị, hỗ trợ chế độ Dark/Light mode và tối ưu in ấn xuất file PDF chuẩn khổ A4.
+            <p class="project-summary" data-vi="Trang hồ sơ năng lực số đa tương tác: tích hợp đổi 4 bảng màu, song ngữ Anh-Việt, Dark/Light mode, xem ảnh phóng to, mã QR và in xuất PDF chuẩn A4." data-en="Digital resume & portfolio: 4 theme presets, bilingual EN/VI support, dark mode, high-res portrait lightbox, QR code and A4-standard PDF export.">
+              Trang hồ sơ năng lực số đa tương tác: tích hợp đổi 4 bảng màu, song ngữ Anh-Việt, Dark/Light mode, xem ảnh phóng to, mã QR và in xuất PDF chuẩn A4.
             </p>
-            <div class="project-card-tech">
-              <span class="tech-tag">HTML5 Semantic</span>
-              <span class="tech-tag">Vanilla CSS</span>
-              <span class="tech-tag">Print Media Query</span>
+            <div class="project-tech-tags">
+              <span class="tech-badge">Vanilla HTML5</span>
+              <span class="tech-badge">Modern CSS Tokens</span>
+              <span class="tech-badge">Bilingual Engine</span>
+              <span class="tech-badge">Print Query</span>
+            </div>
+            <div class="project-action-link">
+              <span data-vi="Xem chi tiết tính năng" data-en="View feature breakdown">Xem chi tiết tính năng</span> →
+            </div>
+          </div>
+
+          <!-- Project 3: Student Management -->
+          <div class="project-box open-project-modal" data-project="student_sys" title="Nhấp để xem chi tiết ứng dụng Quản lý Sinh viên">
+            <div class="project-top-row">
+              <h3 class="project-title" data-vi="Quản lý Sinh viên & Đề tài" data-en="Student Management Mini-App">Quản lý Sinh viên & Đề tài</h3>
+              <span class="project-type-tag">Academic Project</span>
+            </div>
+            <p class="project-summary" data-vi="Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan." data-en="Web-based student record tool: quick search by Student ID (DTC), academic grading metrics, and term project status tracking.">
+              Ứng dụng tra cứu và phân loại dữ liệu sinh viên theo mã số (DTC), thống kê kết quả học tập và quản lý tiến độ bài tập lớn trên giao diện web trực quan.
+            </p>
+            <div class="project-tech-tags">
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">LocalStorage</span>
+              <span class="tech-badge">CRUD Operations</span>
+            </div>
+            <div class="project-action-link">
+              <span data-vi="Xem chi tiết dự án" data-en="View details">Xem chi tiết dự án</span> →
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Hoạt động & Chứng chỉ -->
-      <div class="main-section">
-        <h2 class="section-heading">
-          <span class="section-heading-icon">🏆</span>
-          Chứng chỉ & Hoạt động
-        </h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3 class="timeline-title">Chứng chỉ Responsive Web Design</h3>
-              <span class="timeline-date">2024</span>
-            </div>
-            <p class="timeline-desc">
-              Hoàn thành khóa học thiết kế giao diện web đáp ứng (Responsive), nắm vững Media Queries, Flexbox và Grid CSS.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3 class="timeline-title">Tham gia Chiến dịch Mùa hè xanh & Hoạt động Đoàn</h3>
-              <span class="timeline-date">2023 - 2024</span>
-            </div>
-            <p class="timeline-desc">
-              Tích cực tham gia các phong trào tình nguyện sinh viên tại Thái Nguyên, rèn luyện kỹ năng kết nối, tinh thần kỷ luật và giao tiếp tập thể.
-            </p>
-          </div>
+      <!-- Quick Hire / Contact Banner -->
+      <div class="hire-banner">
+        <div class="hire-text">
+          <h3 data-vi="Bạn đang tìm kiếm Thực tập sinh Frontend nhiệt huyết?" data-en="Looking for a passionate Frontend Intern?">Bạn đang tìm kiếm Thực tập sinh Frontend nhiệt huyết?</h3>
+          <p data-vi="Kiều Duy Hưng luôn sẵn sàng đón nhận cơ hội học hỏi và đồng hành cùng quý doanh nghiệp." data-en="Kieu Duy Hung is ready to learn, collaborate, and contribute value to your engineering team.">Kiều Duy Hưng luôn sẵn sàng đón nhận cơ hội học hỏi và đồng hành cùng quý doanh nghiệp.</p>
         </div>
+        <button class="hire-btn open-contact-btn" data-vi="📩 Gửi lời nhắn ngay" data-en="📩 Send Direct Message">📩 Gửi lời nhắn ngay</button>
       </div>
 
     </section>
 
   </main>
 
-  <footer class="cv-footer">
-    <p>© 2026 Kiều Duy Hưng • Mã SV: DTC235200372 • Thái Nguyên, Việt Nam</p>
+  <footer class="cv-bottom">
+    <p>© 2026 <strong>Kiều Duy Hưng</strong> • <span data-vi="Mã SV:" data-en="Student ID:">Mã SV:</span> DTC235200372 • Thái Nguyên, Việt Nam</p>
   </footer>
 
-  <!-- ==================== INTERACTION SCRIPT ==================== -->
-  <script>
-    // Theme toggle (Dark / Light mode)
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeText = document.getElementById('themeText');
-    const body = document.documentElement;
+  <!-- ==================== MODALS ==================== -->
 
-    // Check saved theme or preference
-    const savedTheme = localStorage.getItem('kdh_theme') || 'light';
-    if (savedTheme === 'dark') {
-      body.setAttribute('data-theme', 'dark');
-      themeIcon.textContent = '☀️';
-      themeText.textContent = 'Chế độ sáng';
-    }
+  <!-- 1. Avatar Lightbox Modal -->
+  <div class="modal-overlay" id="modalAvatar">
+    <div class="modal-card" style="text-align: center;">
+      <button class="modal-close-btn" title="Đóng">&times;</button>
+      <h3 class="modal-title">Kiều Duy Hưng</h3>
+      <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;" data-vi="Chân dung cá nhân (2005 - 21 tuổi - Thái Nguyên)" data-en="Personal Portrait (Born 2005 - Thai Nguyen)">Chân dung cá nhân (2005 - 21 tuổi - Thái Nguyên)</p>
+      <img src="avatar.png" alt="Kiều Duy Hưng Full Portrait" class="avatar-lightbox-img" onerror="this.src='assets/avatar.png'">
+      <div style="margin-top: 14px;">
+        <a href="avatar.png" download="Kieu_Duy_Hung_Avatar.png" class="btn btn-outline">⬇️ <span data-vi="Tải ảnh về máy" data-en="Download Photo">Tải ảnh về máy</span></a>
+      </div>
+    </div>
+  </div>
 
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = body.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        body.removeAttribute('data-theme');
-        localStorage.setItem('kdh_theme', 'light');
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Chế độ tối';
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('kdh_theme', 'dark');
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Chế độ sáng';
-      }
-    });
-  </script>
+  <!-- 2. QR Code Modal -->
+  <div class="modal-overlay" id="modalQR">
+    <div class="modal-card" style="text-align: center;">
+      <button class="modal-close-btn" title="Đóng">&times;</button>
+      <h3 class="modal-title" data-vi="Quét mã QR xem CV trên điện thoại" data-en="Scan QR Code on Mobile">Quét mã QR xem CV trên điện thoại</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted);" data-vi="Mở camera điện thoại hoặc Zalo để quét trực tiếp link GitHub Pages của Kiều Duy Hưng" data-en="Open camera or QR scanner to view Kieu Duy Hung's online CV">
+        Mở camera điện thoại hoặc Zalo để quét trực tiếp link GitHub Pages của Kiều Duy Hưng
+      </p>
+      <div class="qr-display-box">
+        <!-- High-contrast SVG QR Code pointing to GitHub Pages -->
+        <svg width="190" height="190" viewBox="0 0 33 33" shape-rendering="crispEdges">
+          <rect width="33" height="33" fill="#ffffff"/>
+          <!-- Position Detection Patterns (Top-Left) -->
+          <rect x="2" y="2" width="7" height="7" fill="#0f172a"/>
+          <rect x="3" y="3" width="5" height="5" fill="#ffffff"/>
+          <rect x="4" y="4" width="3" height="3" fill="#0f172a"/>
+          <!-- Position Detection Patterns (Top-Right) -->
+          <rect x="24" y="2" width="7" height="7" fill="#0f172a"/>
+          <rect x="25" y="3" width="5" height="5" fill="#ffffff"/>
+          <rect x="26" y="4" width="3" height="3" fill="#0f172a"/>
+          <!-- Position Detection Patterns (Bottom-Left) -->
+          <rect x="2" y="24" width="7" height="7" fill="#0f172a"/>
+          <rect x="3" y="25" width="5" height="5" fill="#ffffff"/>
+          <rect x="4" y="26" width="3" height="3" fill="#0f172a"/>
+          <!-- Data modules pattern -->
+          <rect x="11" y="2" width="2" height="1" fill="#0f172a"/>
+          <rect x="15" y="2" width="3" height="1" fill="#0f172a"/>
+          <rect x="20" y="2" width="2" height="1" fill="#0f172a"/>
+          <rect x="10" y="4" width="1" height="3" fill="#0f172a"/>
+          <rect x="13" y="5" width="3" height="2" fill="#0f172a"/>
+          <rect x="18" y="4" width="2" height="1" fill="#0f172a"/>
+          <rect x="21" y="5" width="1" height="2" fill="#0f172a"/>
+          <rect x="11" y="8" width="1" height="3" fill="#0f172a"/>
+          <rect x="14" y="9" width="4" height="1" fill="#0f172a"/>
+          <rect x="20" y="8" width="2" height="2" fill="#0f172a"/>
+          <rect x="2" y="11" width="3" height="1" fill="#0f172a"/>
+          <rect x="6" y="11" width="2" height="2" fill="#0f172a"/>
+          <rect x="10" y="12" width="2" height="2" fill="#0f172a"/>
+          <rect x="14" y="11" width="5" height="2" fill="#0f172a"/>
+          <rect x="22" y="11" width="3" height="1" fill="#0f172a"/>
+          <rect x="27" y="11" width="4" height="2" fill="#0f172a"/>
+          <rect x="3" y="14" width="2" height="3" fill="#0f172a"/>
+          <rect x="8" y="15" width="4" height="1" fill="#0f172a"/>
+          <rect x="13" y="14" width="2" height="3" fill="#0f172a"/>
+          <rect x="17" y="14" width="4" height="2" fill="#0f172a"/>
+          <rect x="23" y="15" width="3" height="3" fill="#0f172a"/>
+          <rect x="28" y="14" width="3" height="2" fill="#0f172a"/>
+          <rect x="2" y="18" width="4" height="2" fill="#0f172a"/>
+          <rect x="7" y="18" width="2" height="2" fill="#0f172a"/>
+          <rect x="11" y="18" width="2" height="3" fill="#0f172a"/>
+          <rect x="16" y="18" width="5" height="1" fill="#0f172a"/>
+          <rect x="23" y="19" width="2" height="2" fill="#0f172a"/>
+          <rect x="27" y="18" width="4" height="3" fill="#0f172a"/>
+          <rect x="10" y="23" width="2" height="3" fill="#0f172a"/>
+          <rect x="14" y="22" width="3" height="2" fill="#0f172a"/>
+          <rect x="19" y="24" width="2" height="1" fill="#0f172a"/>
+          <rect x="22" y="22" width="2" height="3" fill="#0f172a"/>
+          <rect x="26" y="24" width="5" height="2" fill="#0f172a"/>
+          <rect x="11" y="28" width="4" height="2" fill="#0f172a"/>
+          <rect x="17" y="27" width="3" height="3" fill="#0f172a"/>
+          <rect x="22" y="28" width="4" height="2" fill="#0f172a"/>
+          <rect x="28" y="28" width="3" height="2" fill="#0f172a"/>
+        </svg>
+      </div>
+      <p style="font-size:0.8rem; color:var(--primary); font-weight:700;">https://duyhwng2301.github.io/Ki-u-Duy-H-ng/</p>
+    </div>
+  </div>
+
+  <!-- 3. Dynamic Project Details Modal -->
+  <div class="modal-overlay" id="modalProject">
+    <div class="modal-card">
+      <button class="modal-close-btn" title="Đóng">&times;</button>
+      <h3 class="modal-title" id="projectModalTitle">Chi Tiết Dự Án</h3>
+      <div class="modal-content-body" id="projectModalBody">
+        <!-- Content injected dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Contact Message Modal -->
+  <div class="modal-overlay" id="modalContact">
+    <div class="modal-card">
+      <button class="modal-close-btn" title="Đóng">&times;</button>
+      <h3 class="modal-title" data-vi="Gửi Lời Nhắn Đến Kiều Duy Hưng" data-en="Send Message to Kieu Duy Hung">Gửi Lời Nhắn Đến Kiều Duy Hưng</h3>
+      <p style="font-size:0.86rem; color:var(--text-muted);" data-vi="Điền thông tin bên dưới để gửi email trực tiếp cho Kiều Duy Hưng." data-en="Fill in your details to reach out to Kieu Duy Hung via email.">
+        Điền thông tin bên dưới để gửi email trực tiếp cho Kiều Duy Hưng.
+      </p>
+      <form class="contact-form" id="quickMsgForm">
+        <div class="form-group">
+          <label class="form-label" data-vi="Họ tên của bạn" data-en="Your Name">Họ tên của bạn</label>
+          <input type="text" class="form-input" id="msgSenderName" placeholder="Ví dụ: Nguyễn Văn A" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-vi="Email hoặc Số điện thoại" data-en="Email or Phone">Email hoặc Số điện thoại</label>
+          <input type="text" class="form-input" id="msgSenderContact" placeholder="Ví dụ: recruiter@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-vi="Nội dung lời nhắn" data-en="Message">Nội dung lời nhắn</label>
+          <textarea class="form-textarea" id="msgContent" rows="4" placeholder="Nội dung trao đổi công việc, lịch phỏng vấn..." required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+          <button type="submit" class="btn btn-primary" data-vi="🚀 Gửi Email Trực Tiếp" data-en="🚀 Send Direct Email">🚀 Gửi Email Trực Tiếp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toastNotice">Thông báo</div>
+
+  <!-- Interactive JavaScript -->
+  <script src="script.js"></script>
 
 </body>
 </html>
