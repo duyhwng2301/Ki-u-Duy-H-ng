@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Kiều Duy Hưng - Sinh viên Công nghệ Thông tin</title>
+  <meta name="description" content="Hồ sơ cá nhân (CV) của Kiều Duy Hưng - Sinh viên CNTT, mã SV DTC235200372, Thái Nguyên.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+  <!-- ==================== ACTION BAR ==================== -->
+  <header class="action-bar" id="cvActionBar">
+    <div class="action-bar-title">
+      <span>📄 Hồ Sơ Năng Lực Cá Nhân</span>
+      <span class="badge">CV Chuyên Nghiệp</span>
+    </div>
+    <div class="action-buttons">
+      <button class="btn btn-outline" id="themeToggleBtn" title="Chuyển đổi chế độ Sáng / Tối">
+        <span id="themeIcon">🌙</span> <span id="themeText">Chế độ tối</span>
+      </button>
+      <button class="btn btn-primary" id="printCvBtn" onclick="window.print()" title="In CV hoặc lưu file PDF">
+        🖨️ In / Lưu PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CV CONTAINER ==================== -->
+  <main class="cv-wrapper" id="cvMainContainer">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="cv-sidebar">
+      
+      <!-- Avatar & Profile info -->
+      <div class="profile-avatar-wrap">
+        <div class="avatar" title="Kiều Duy Hưng">
+          KDH
+          <div class="avatar-status" title="Sẵn sàng làm việc / thực tập"></div>
+        </div>
+        <h1 class="profile-name">Kiều Duy Hưng</h1>
+        <div class="profile-role">Sinh viên Công nghệ Thông tin</div>
+      </div>
+
+      <!-- Thông tin cá nhân -->
+      <section class="side-section">
+        <h2 class="side-title">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          Thông tin cá nhân
+        </h2>
+        <ul class="info-list">
+          <li class="info-item">
+            <div class="info-icon">🎂</div>
+            <div class="info-details">
+              <span class="info-label">Ngày sinh</span>
+              <span class="info-value">23/01/2005 (21 tuổi)</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icon">🎓</div>
+            <div class="info-details">
+              <span class="info-label">Mã sinh viên</span>
+              <span class="info-value">DTC235200372</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-details">
+              <span class="info-label">Quê quán</span>
+              <span class="info-value">Thái Nguyên, Việt Nam</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-details">
+              <span class="info-label">Điện thoại</span>
+              <span class="info-value"><a href="tel:0987654321">0987 654 321</a></span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-details">
+              <span class="info-label">Email</span>
+              <span class="info-value"><a href="mailto:kieuduyhung.dev@gmail.com">kieuduyhung.dev@gmail.com</a></span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-details">
+              <span class="info-label">GitHub</span>
+              <span class="info-value"><a href="https://github.com" target="_blank" rel="noopener">github.com/kieuduyhung</a></span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Kỹ năng chuyên môn -->
+      <section class="side-section">
+        <h2 class="side-title">
+          <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+          Kỹ năng chuyên môn
+        </h2>
+        <div class="skills-group">
+          <div class="skill-row">
+            <div class="skill-header">
+              <span>HTML5 & Semantic Web</span>
+              <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-header">
+              <span>CSS3 / Flexbox / Grid / Responsive</span>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-header">
+              <span>JavaScript (ES6+) & DOM</span>
+              <span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-header">
+              <span>Git & Quản lý phiên bản</span>
+              <span class="skill-pct">70%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kỹ năng mềm & Công cụ -->
+      <section class="side-section">
+        <h2 class="side-title">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Kỹ năng mềm
+        </h2>
+        <div class="badges-cloud">
+          <span class="badge-pill">Làm việc nhóm</span>
+          <span class="badge-pill">Tư duy logic</span>
+          <span class="badge-pill">Tự học & Nghiên cứu</span>
+          <span class="badge-pill">Quản lý thời gian</span>
+          <span class="badge-pill">Giao tiếp tốt</span>
+          <span class="badge-pill">Tinh thần trách nhiệm</span>
+        </div>
+      </section>
+
+      <!-- Sở thích cá nhân -->
+      <section class="side-section">
+        <h2 class="side-title">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          Sở thích
+        </h2>
+        <div class="badges-cloud">
+          <span class="badge-pill">⚽ Bóng đá</span>
+          <span class="badge-pill">💻 Lập trình web</span>
+          <span class="badge-pill">🎵 Nghe nhạc</span>
+          <span class="badge-pill">🎮 Thể thao điện tử</span>
+          <span class="badge-pill">📚 Đọc sách công nghệ</span>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT -->
+    <section class="cv-main">
+      
+      <!-- Giới thiệu & Mục tiêu nghề nghiệp -->
+      <div class="main-section">
+        <h2 class="section-heading">
+          <span class="section-heading-icon">🎯</span>
+          Mục tiêu nghề nghiệp
+        </h2>
+        <div class="objective-box">
+          Là một sinh viên ngành Công nghệ Thông tin đam mê lập trình và xây dựng giao diện web thân thiện, hiện đại. Tôi mong muốn tìm kiếm cơ hội <strong>Thực tập sinh / Junior Frontend Developer</strong> để áp dụng các kiến thức đã học về HTML, CSS, JavaScript, đồng thời học hỏi thêm quy trình phát triển sản phẩm thực tế và nâng cao năng lực chuyên môn để đóng góp hiệu quả cho công ty.
+        </div>
+      </div>
+
+      <!-- Tóm tắt năng lực -->
+      <div class="highlight-grid">
+        <div class="highlight-box">
+          <div class="highlight-number">21</div>
+          <div class="highlight-label">Tuổi nhiệt huyết</div>
+        </div>
+        <div class="highlight-box">
+          <div class="highlight-number">100%</div>
+          <div class="highlight-label">Tinh thần học hỏi</div>
+        </div>
+        <div class="highlight-box">
+          <div class="highlight-number">2+</div>
+          <div class="highlight-label">Dự án thực hành</div>
+        </div>
+      </div>
+
+      <!-- Quá trình học vấn -->
+      <div class="main-section">
+        <h2 class="section-heading">
+          <span class="section-heading-icon">🎓</span>
+          Học vấn & Đào tạo
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Đại học Công nghệ Thông tin & Truyền thông Thái Nguyên</h3>
+              <span class="timeline-date">2023 - Hiện tại</span>
+            </div>
+            <div class="timeline-subtitle">Chuyên ngành: Công nghệ Thông tin / Kỹ thuật Phần mềm</div>
+            <p class="timeline-desc">
+              - <strong>Mã sinh viên:</strong> DTC235200372<br>
+              - <strong>Tình trạng:</strong> Đang theo học năm 2, hoàn thành tốt các học phần cốt lõi về cấu trúc dữ liệu, giải thuật, lập trình web căn bản và cơ sở dữ liệu.<br>
+              - Tích cực tham gia các hoạt động nghiên cứu khoa học và câu lạc bộ học thuật.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Trường THPT tại Thái Nguyên</h3>
+              <span class="timeline-date">2020 - 2023</span>
+            </div>
+            <div class="timeline-subtitle">Tốt nghiệp THPT</div>
+            <p class="timeline-desc">Tốt nghiệp loại Khá - Giỏi, đạt điểm cao các môn Toán, Tin học và Vật lý.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dự án tiêu biểu -->
+      <div class="main-section">
+        <h2 class="section-heading">
+          <span class="section-heading-icon">🚀</span>
+          Dự án tiêu biểu & Thực hành
+        </h2>
+        <div class="projects-grid">
+          
+          <div class="project-card">
+            <div class="project-card-header">
+              <h3 class="project-card-title">FootAI - Trợ Lý Thể Thao & Sa Bàn</h3>
+              <span class="project-card-badge">Web App</span>
+            </div>
+            <p class="project-card-desc">
+              Ứng dụng web hiển thị tỷ số trực tiếp, sa bàn tương tác kéo thả chiến thuật bóng đá (4-3-3, 4-2-3-1), phân tích dữ liệu chỉ số cầu thủ và bảng xếp hạng.
+            </p>
+            <div class="project-card-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3 (Grid/Flex)</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Local Storage</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <h3 class="project-card-title">Personal CV & Portfolio Website</h3>
+              <span class="project-card-badge">Cá nhân</span>
+            </div>
+            <p class="project-card-desc">
+              Trang hồ sơ trực tuyến với giao diện chuẩn hiện đại, responsive đa thiết bị, hỗ trợ chế độ Dark/Light mode và tối ưu in ấn xuất file PDF chuẩn khổ A4.
+            </p>
+            <div class="project-card-tech">
+              <span class="tech-tag">HTML5 Semantic</span>
+              <span class="tech-tag">Vanilla CSS</span>
+              <span class="tech-tag">Print Media Query</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Hoạt động & Chứng chỉ -->
+      <div class="main-section">
+        <h2 class="section-heading">
+          <span class="section-heading-icon">🏆</span>
+          Chứng chỉ & Hoạt động
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Chứng chỉ Responsive Web Design</h3>
+              <span class="timeline-date">2024</span>
+            </div>
+            <p class="timeline-desc">
+              Hoàn thành khóa học thiết kế giao diện web đáp ứng (Responsive), nắm vững Media Queries, Flexbox và Grid CSS.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Tham gia Chiến dịch Mùa hè xanh & Hoạt động Đoàn</h3>
+              <span class="timeline-date">2023 - 2024</span>
+            </div>
+            <p class="timeline-desc">
+              Tích cực tham gia các phong trào tình nguyện sinh viên tại Thái Nguyên, rèn luyện kỹ năng kết nối, tinh thần kỷ luật và giao tiếp tập thể.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="cv-footer">
+    <p>© 2026 Kiều Duy Hưng • Mã SV: DTC235200372 • Thái Nguyên, Việt Nam</p>
+  </footer>
+
+  <!-- ==================== INTERACTION SCRIPT ==================== -->
+  <script>
+    // Theme toggle (Dark / Light mode)
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const body = document.documentElement;
+
+    // Check saved theme or preference
+    const savedTheme = localStorage.getItem('kdh_theme') || 'light';
+    if (savedTheme === 'dark') {
+      body.setAttribute('data-theme', 'dark');
+      themeIcon.textContent = '☀️';
+      themeText.textContent = 'Chế độ sáng';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('kdh_theme', 'light');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Chế độ tối';
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('kdh_theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Chế độ sáng';
+      }
+    });
+  </script>
+
+</body>
+</html>

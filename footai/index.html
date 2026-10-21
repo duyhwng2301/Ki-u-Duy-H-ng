@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FootAI - Trợ Lý Ảo Bóng Đá & Trung Tâm Chiến Thuật</title>
+  <meta name="description" content="Trợ lý ảo bóng đá thông minh hàng đầu: cập nhật tỷ số trực tiếp, bảng xếp hạng các giải đấu hàng đầu, sa bàn chiến thuật tương tác và phân tích AI chuyên sâu.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+</head>
+<body>
+
+  <!-- ==================== MAIN HEADER ==================== -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <img src="assets/logo.jpg" alt="FootAI Logo" class="brand-logo-img" id="brandLogoImg">
+        <div class="brand-text">
+          <h1>FootAI Master</h1>
+          <span class="brand-badge">Trợ Lý Túc Cầu AI</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="mainNavTabs" role="tablist">
+        <button class="nav-tab-btn active" id="tabBtnMatches" data-tab="matches" role="tab" aria-selected="true">
+          <span>⚽ Trận Đấu & Tỉ Số</span>
+        </button>
+        <button class="nav-tab-btn" id="tabBtnTactics" data-tab="tactics" role="tab" aria-selected="false">
+          <span>📋 Sa Bàn Chiến Thuật</span>
+        </button>
+        <button class="nav-tab-btn" id="tabBtnAiChat" data-tab="aiChat" role="tab" aria-selected="false">
+          <span>🤖 Trợ Lý AI Chat</span>
+        </button>
+        <button class="nav-tab-btn" id="tabBtnScout" data-tab="scout" role="tab" aria-selected="false">
+          <span>⚡ So Sánh Cầu Thủ</span>
+        </button>
+        <button class="nav-tab-btn" id="tabBtnStandings" data-tab="standings" role="tab" aria-selected="false">
+          <span>🏆 Bảng Xếp Hạng</span>
+        </button>
+      </nav>
+
+      <div class="header-status" id="headerStatus">
+        <div class="live-pulse-badge" id="liveMatchBadge">
+          <span class="pulse-dot"></span>
+          <span>LIVE • 2 Trận Đang Đá</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO BANNER ==================== -->
+  <section class="hero-banner" id="heroBannerSection">
+    <div class="hero-card">
+      <img src="assets/hero.jpg" alt="Sân vận động FootAI Arena" class="hero-bg-img" id="heroBgImg">
+      <div class="hero-gradient-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag">⚡ Dữ Liệu & Phân Tích Thông Minh</span>
+        <h2 class="hero-title">Trợ Lý Bóng Đá Thế Hệ Mới</h2>
+        <p class="hero-desc">
+          Cập nhật tỷ số thời gian thực, sa bàn điều khiển chiến thuật 4-3-3 / 4-2-3-1, phân tích xG và đối thoại cùng AI am hiểu túc cầu thế giới lẫn Việt Nam.
+        </p>
+        <div class="hero-stats-row">
+          <div class="hero-stat-item">
+            <span class="stat-num" id="heroStatLeagues">5+</span>
+            <span class="stat-label">Giải Đấu Hàng Đầu</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-num" id="heroStatAccuracy">98.4%</span>
+            <span class="stat-label">Độ Chuẩn Xác Phân Tích</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-num" id="heroStatLatency">&lt;0.5s</span>
+            <span class="stat-label">Tốc Độ Phản Hồi AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-content" id="mainAppContent">
+
+    <!-- TAB 1: MATCH CENTER & LIVE SCORES -->
+    <section class="tab-pane active" id="pane-matches" role="tabpanel">
+      <div class="filters-bar" id="matchFiltersBar">
+        <div class="league-filter-pills" id="leaguePillsContainer">
+          <!-- Dynamically populated league pills -->
+        </div>
+        <div class="status-filter-wrapper">
+          <select class="status-filter-select" id="matchStatusFilter">
+            <option value="all">Tất cả trạng thái</option>
+            <option value="LIVE">Đang diễn ra (LIVE)</option>
+            <option value="UPCOMING">Sắp diễn ra</option>
+            <option value="FT">Đã kết thúc (FT)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="matches-grid" id="matchesListGrid">
+        <!-- Rendered matches -->
+      </div>
+    </section>
+
+    <!-- TAB 2: TACTICAL BOARD (SA BÀN CHIẾN THUẬT) -->
+    <section class="tab-pane" id="pane-tactics" role="tabpanel">
+      <div class="tactical-board-wrapper">
+        <div class="tactical-pitch-card">
+          <div class="pitch-toolbar">
+            <div class="pitch-controls-group">
+              <label for="formationSelect" style="font-size:0.82rem;font-weight:700;color:var(--text-secondary);">Sơ đồ:</label>
+              <select id="formationSelect" class="formation-select">
+                <option value="4-3-3">4-3-3 Tiki-Taka</option>
+                <option value="4-2-3-1">4-2-3-1 Pressing & Chuyển Trạng Thái</option>
+                <option value="3-5-2">3-5-2 Song Sát & Wing-backs</option>
+                <option value="4-4-2">4-4-2 Low-Block Cổ Điển</option>
+              </select>
+            </div>
+
+            <div class="pitch-controls-group">
+              <button class="pitch-btn" id="btnToggleDraw" title="Bật/Tắt chế độ vẽ mũi tên chiến thuật">
+                ✏️ <span>Vẽ Chiến Thuật</span>
+              </button>
+              <button class="pitch-btn" id="btnClearDraw" title="Xóa các đường vẽ trên sân">
+                🧹 <span>Xóa Nét Vẽ</span>
+              </button>
+              <button class="pitch-btn" id="btnResetFormation" title="Đặt lại vị trí cầu thủ mặc định">
+                🔄 <span>Đặt Lại</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- The Interactive Pitch Field -->
+          <div class="pitch-container" id="pitchField">
+            <div class="pitch-half-line"></div>
+            <div class="pitch-center-circle"></div>
+            <div class="pitch-center-spot"></div>
+            <div class="pitch-penalty-area-top"></div>
+            <div class="pitch-goal-area-top"></div>
+            <div class="pitch-penalty-area-bottom"></div>
+            <div class="pitch-goal-area-bottom"></div>
+
+            <!-- Drawing Canvas Overlay -->
+            <canvas id="pitchCanvas" class="pitch-drawing-canvas"></canvas>
+
+            <!-- Draggable Players Nodes Container -->
+            <div id="playersPitchLayer"></div>
+          </div>
+        </div>
+
+        <!-- Tactical Sidebar Information -->
+        <aside class="tactical-sidebar">
+          <div class="tactical-info-card" id="tacticalInfoCard">
+            <h3 id="tacticalName">4-3-3 Tiki-Taka</h3>
+            <span class="tactical-meta-badge" id="tacticalBadge">Triết lý kiểm soát không gian</span>
+            <p id="tacticalDesc" style="font-size:0.88rem;color:#cbd5e1;margin-bottom:14px;">
+              Sơ đồ tối ưu kiểm soát không gian, tam giác chuyền bóng và pressing tầm cao.
+            </p>
+            <h4 style="font-size:0.9rem;font-weight:700;color:var(--accent-cyan);margin-bottom:8px;">
+              ⚡ Nguyên tắc vận hành:
+            </h4>
+            <ul class="tactical-principles-list" id="tacticalPrinciples">
+              <li>Tiền vệ mỏ neo (CDM) lùi sâu hình thành tam giác phân phối bóng.</li>
+              <li>Hậu vệ biên dâng cao tạo bề ngang (Width) cho hàng công.</li>
+              <li>Tiền đạo cánh cắt vào nách trung lộ (Half-space) dứt điểm.</li>
+              <li>Khối pressing đồng bộ ngay trong vòng 5 giây sau khi mất quyền kiểm soát.</li>
+            </ul>
+          </div>
+
+          <div class="tactical-info-card">
+            <h3>💡 Hướng Dẫn Sử Dụng Sa Bàn</h3>
+            <ul class="tactical-principles-list" style="margin-top:10px;">
+              <li><strong>Kéo & Thả</strong>: Nhấp và kéo trực tiếp bất kỳ cầu thủ nào trên sân để thử nghiệm biến thể chiến thuật.</li>
+              <li><strong>Vẽ chiến thuật</strong>: Nhấp nút "Vẽ Chiến Thuật" và dùng chuột để phác thảo hướng di chuyển, đường chuyền hoặc mảng miếng phối hợp.</li>
+              <li><strong>Đổi sơ đồ</strong>: Chọn 4-3-3, 4-2-3-1, 3-5-2 để tự động dàn xếp vị trí tối ưu.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TAB 3: AI FOOTBALL CHAT ASSISTANT -->
+    <section class="tab-pane" id="pane-aiChat" role="tabpanel">
+      <div class="chat-section-container">
+        <div class="chat-header">
+          <div class="chat-assistant-meta">
+            <img src="assets/logo.jpg" alt="FootAI Avatar" class="chat-avatar">
+            <div>
+              <h3>FootAI Copilot</h3>
+              <span class="chat-subtitle">● Đang trực tuyến • Sẵn sàng phân tích chuyên sâu</span>
+            </div>
+          </div>
+          <div class="chat-quick-actions">
+            <button class="pitch-btn" id="btnClearChatHistory">🗑️ Xóa hội thoại</button>
+          </div>
+        </div>
+
+        <div class="chat-messages-scroll" id="chatMessagesContainer">
+          <div class="chat-bubble bot">
+            <h3>Chào bạn! Tôi là FootAI - Chuyên gia trợ lý bóng đá của bạn. 👋⚽</h3>
+            <p>Tôi có thể giúp bạn:</p>
+            <ul>
+              <li>Phân tích chiến thuật các trận cầu đỉnh cao (EPL, Champions League, El Clásico, V-League).</li>
+              <li>Giải thích các tình huống VAR, luật việt vị và các điều luật IFAB mới nhất.</li>
+              <li>So sánh phong độ, chỉ số xG, điểm mạnh/yếu của các ngôi sao hàng đầu.</li>
+              <li>Tư vấn cách vận hành các sơ đồ chiến thuật (4-3-3, 4-2-3-1, 3-5-2...).</li>
+            </ul>
+            <p style="margin-top:8px;">Hãy chọn câu hỏi gợi ý bên dưới hoặc gõ câu hỏi bất kỳ nhé!</p>
+          </div>
+        </div>
+
+        <div class="chat-suggestions-bar" id="chatSuggestionsBar">
+          <button class="suggestion-chip" data-prompt="Phân tích chiến thuật Man City vs Arsenal">⚔️ Man City vs Arsenal</button>
+          <button class="suggestion-chip" data-prompt="Giải thích luật việt vị mới nhất và công nghệ VAR">⚖️ Luật việt vị & VAR</button>
+          <button class="suggestion-chip" data-prompt="So sánh sơ đồ 4-3-3 và 4-2-3-1">📐 4-3-3 vs 4-2-3-1</button>
+          <button class="suggestion-chip" data-prompt="So sánh Haaland vs Mbappe ai toàn diện hơn?">⚡ Haaland vs Mbappé</button>
+          <button class="suggestion-chip" data-prompt="Phân tích cục diện V-League và CLB Nam Định">🇻🇳 Cục diện V-League</button>
+        </div>
+
+        <div class="chat-input-bar">
+          <form class="chat-form" id="chatForm">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Hỏi FootAI về chiến thuật, trận đấu, cầu thủ, luật bóng đá..." autocomplete="off">
+            <button type="submit" class="chat-send-btn" id="chatSendBtn">
+              <span>Gửi</span> 🚀
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: PLAYER SCOUT & COMPARISON -->
+    <section class="tab-pane" id="pane-scout" role="tabpanel">
+      <div class="scout-container">
+        <div class="scout-selection-card">
+          <div class="player-picker-box">
+            <label for="scoutPlayer1">Cầu thủ 1 (Bên Trái):</label>
+            <select id="scoutPlayer1" class="player-select"></select>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="player-picker-box">
+            <label for="scoutPlayer2">Cầu thủ 2 (Bên Phải):</label>
+            <select id="scoutPlayer2" class="player-select"></select>
+          </div>
+        </div>
+
+        <div class="comparison-grid" id="scoutComparisonGrid">
+          <!-- Rendered Player 1 and Player 2 Cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: STANDINGS -->
+    <section class="tab-pane" id="pane-standings" role="tabpanel">
+      <div class="filters-bar">
+        <div class="league-filter-pills" id="standingsLeaguePills">
+          <button class="pill-btn active" data-league="epl">Premier League</button>
+          <button class="pill-btn" data-league="ucl">Champions League</button>
+          <button class="pill-btn" data-league="laliga">La Liga</button>
+          <button class="pill-btn" data-league="vleague">V-League 1</button>
+        </div>
+      </div>
+
+      <div class="standings-card" id="standingsTableContainer">
+        <!-- Rendered Standings Table -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MATCH DETAILS MODAL ==================== -->
+  <div class="modal-backdrop" id="matchDetailsModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Đóng cửa sổ">✕</button>
+      <div id="modalDynamicContent">
+        <!-- Injected match details -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
