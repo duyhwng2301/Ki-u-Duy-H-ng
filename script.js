@@ -1,13 +1,78 @@
 /* ==========================================================================
-   Kiều Duy Hưng - Interactive CV High-Tech Engine
-   Particles Canvas, Developer Terminal, Typewriter, Web Audio SFX & 3D Tilt
+   Kiều Duy Hưng - Interactive CV High-Tech Engine (Upgraded & Fixed)
+   Particles Canvas, Developer Terminal, vCard, Typewriter, Web Audio SFX & Copy
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
 
   // ==========================================================================
-  // 1. WEB AUDIO API SYNTHESIZER (Crisp UI Sound Effects)
+  // 1. ROBUST COPY TO CLIPBOARD (Works on file:///, http, https & mobile)
+  // ==========================================================================
+  function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    } else {
+      return new Promise((resolve, reject) => {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-999999px';
+          textArea.style.top = '-999999px';
+          textArea.setAttribute('readonly', '');
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          const success = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          if (success) resolve();
+          else reject(new Error('execCommand copy returned false'));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+  }
+
+  // ==========================================================================
+  // 2. VCARD CONTACT DOWNLOAD ENGINE (.vcf)
+  // ==========================================================================
+  function downloadVCard() {
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'FN:Kiều Duy Hưng',
+      'N:Kiều;Duy Hưng;;;',
+      'TITLE:Sinh viên năm 4 - Khoa Công nghệ Thông tin',
+      'ORG:Trường ĐH Công nghệ Thông tin & Truyền thông Thái Nguyên (ICTU)',
+      'TEL;TYPE=CELL,VOICE:0395317625',
+      'EMAIL;TYPE=INTERNET,PREF:kieuduyhung2301@gmail.com',
+      'URL:https://duyhwng2301.github.io/Ki-u-Duy-H-ng/',
+      'NOTE:Mã SV: DTC235200372 - Sinh năm 2005 - Thái Nguyên, VN',
+      'END:VCARD'
+    ].join('\r\n');
+
+    const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Kieu_Duy_Hung_Contact.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast(getLang() === 'en' ? '📇 Downloaded Kieu Duy Hung vCard (.vcf)' : '📇 Đã tải danh bạ Kiều Duy Hưng (.vcf)');
+    playTone(784, 'triangle', 0.1, 0.06);
+  }
+
+  const vcardBtn = document.getElementById('downloadVcardBtn');
+  if (vcardBtn) {
+    vcardBtn.addEventListener('click', downloadVCard);
+  }
+
+  // ==========================================================================
+  // 3. WEB AUDIO API SYNTHESIZER (Crisp UI Sound Effects)
   // ==========================================================================
   let audioCtx = null;
   let soundEnabled = localStorage.getItem('kdh_cv_sfx') === 'true';
@@ -40,10 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const sfxIcon = document.getElementById('sfxIcon');
   if (sfxBtn) {
     sfxIcon.textContent = soundEnabled ? '🔊' : '🔇';
+    sfxBtn.classList.toggle('active', soundEnabled);
+
     sfxBtn.addEventListener('click', () => {
       soundEnabled = !soundEnabled;
       localStorage.setItem('kdh_cv_sfx', soundEnabled);
       sfxIcon.textContent = soundEnabled ? '🔊' : '🔇';
+      sfxBtn.classList.toggle('active', soundEnabled);
       if (soundEnabled) playTone(587.33, 'triangle', 0.08, 0.06);
       showToast(soundEnabled ? '🔊 Đã bật âm thanh giao diện' : '🔇 Đã tắt âm thanh giao diện');
     });
@@ -56,13 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 2. THEME & COLOR PRESETS
+  // 4. THEME & COLOR PRESETS
   // ==========================================================================
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const themeIcon = document.getElementById('themeIcon');
   const themeText = document.getElementById('themeText');
 
-  const savedTheme = localStorage.getItem('kdh_cv_theme') || 'dark'; // Default dark for cyber aesthetic
+  const savedTheme = localStorage.getItem('kdh_cv_theme') || 'dark';
   if (savedTheme === 'dark') {
     root.setAttribute('data-theme', 'dark');
     if (themeIcon) themeIcon.textContent = '☀️';
@@ -120,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 3. LANGUAGE SWITCHER (VI / EN)
+  // 5. LANGUAGE SWITCHER (VI / EN)
   // ==========================================================================
   const langToggleBtn = document.getElementById('langToggleBtn');
   const langText = document.getElementById('langText');
@@ -161,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 4. TYPEWRITER EFFECT
+  // 6. TYPEWRITER EFFECT
   // ==========================================================================
   const typewriterEl = document.getElementById('typewriterText');
   if (typewriterEl) {
@@ -174,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const titlesEn = [
       'Senior Student - Faculty of Information Technology',
-      'Thai Nguyen ICTU University (Sophomore to Senior)',
+      'Thai Nguyen ICTU University (Graduating Senior)',
       'Frontend Developer & UI/UX Enthusiast',
       'Passionate about Modern Web & Interactive Tactics',
       'Available for full-time & internship opportunities'
@@ -192,15 +260,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isDeleting) {
         typewriterEl.textContent = currentFullText.substring(0, charIdx - 1);
         charIdx--;
-        typingSpeed = 40;
+        typingSpeed = 38;
       } else {
         typewriterEl.textContent = currentFullText.substring(0, charIdx + 1);
         charIdx++;
-        typingSpeed = 85;
+        typingSpeed = 80;
       }
 
       if (!isDeleting && charIdx === currentFullText.length) {
-        typingSpeed = 2000; // Pause at end of text
+        typingSpeed = 2200; // Pause at end of text
         isDeleting = true;
       } else if (isDeleting && charIdx === 0) {
         isDeleting = false;
@@ -215,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 5. TOAST NOTIFICATION SYSTEM
+  // 7. TOAST NOTIFICATION SYSTEM
   // ==========================================================================
   const toast = document.getElementById('toastNotice');
   let toastTimer = null;
@@ -232,34 +300,32 @@ document.addEventListener('DOMContentLoaded', () => {
   window.showToast = showToast;
 
   // ==========================================================================
-  // 6. ONE-CLICK COPY TO CLIPBOARD
+  // 8. ONE-CLICK COPY TO CLIPBOARD BUTTONS (Fixed for all environments)
   // ==========================================================================
   document.querySelectorAll('.copy-trigger').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const textToCopy = btn.dataset.copyText || btn.textContent.trim();
-      navigator.clipboard.writeText(textToCopy).then(() => {
+      copyToClipboard(textToCopy).then(() => {
         showToast(`📋 ${getLang() === 'en' ? 'Copied to clipboard:' : 'Đã sao chép:'} ${textToCopy}`);
         playTone(784, 'triangle', 0.08, 0.05);
       }).catch(() => {
-        showToast(getLang() === 'en' ? 'Failed to copy' : 'Không thể sao chép');
+        showToast(getLang() === 'en' ? 'Copy error' : 'Lỗi khi sao chép');
       });
     });
   });
 
   // ==========================================================================
-  // 7. INTERACTIVE GITHUB CONTRIBUTION HEATMAP
+  // 9. GITHUB ACTIVITY HEATMAP MATRIX
   // ==========================================================================
   const heatmapGrid = document.getElementById('githubHeatmapGrid');
   if (heatmapGrid) {
     heatmapGrid.innerHTML = '';
-    // 52 weeks * 7 days = 364 cells
     const totalCells = 52 * 7;
     for (let i = 0; i < totalCells; i++) {
       const cell = document.createElement('div');
       cell.className = 'heat-cell';
       
-      // Seed realistic distribution
       const rand = Math.random();
       if (rand > 0.85) cell.classList.add('heat-l4');
       else if (rand > 0.65) cell.classList.add('heat-l3');
@@ -272,11 +338,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 8. INTERACTIVE CANVAS PARTICLES NETWORK
+  // 10. INTERACTIVE CANVAS PARTICLES NETWORK
   // ==========================================================================
   const canvas = document.getElementById('techCanvas');
   let fxEnabled = localStorage.getItem('kdh_cv_fx') !== 'false';
   const fxBtn = document.getElementById('fxToggleBtn');
+
+  if (fxBtn) {
+    fxBtn.classList.toggle('active', fxEnabled);
+  }
 
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -360,6 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fxEnabled = !fxEnabled;
         localStorage.setItem('kdh_cv_fx', fxEnabled);
         document.body.classList.toggle('fx-disabled', !fxEnabled);
+        fxBtn.classList.toggle('active', fxEnabled);
         if (fxEnabled) renderParticles();
         showToast(fxEnabled ? '⚡ Đã bật hiệu ứng mạng lưới hạt' : '⏸️ Đã tạm dừng hiệu ứng hạt');
       });
@@ -367,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 9. DEVELOPER TERMINAL CONSOLE
+  // 11. DEVELOPER TERMINAL CONSOLE (Upgraded with exit, quit, vcard, phone)
   // ==========================================================================
   const terminalModal = document.getElementById('modalTerminal');
   const terminalBtn = document.getElementById('terminalBtn');
@@ -381,6 +452,15 @@ document.addEventListener('DOMContentLoaded', () => {
       openModal(terminalModal);
       setTimeout(() => termInput && termInput.focus(), 150);
       playTone(520, 'sine', 0.08, 0.04);
+    });
+  }
+
+  // Auto-focus input when clicking inside terminal modal
+  if (terminalModal) {
+    terminalModal.addEventListener('click', (e) => {
+      if (!e.target.closest('.modal-close-btn') && !e.target.closest('.mac-close')) {
+        if (termInput) termInput.focus();
+      }
     });
   }
 
@@ -431,10 +511,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <div><span class="term-green">skills</span>    : Bảng kỹ năng kỹ thuật & độ thành thạo</div>
           <div><span class="term-green">projects</span>  : Danh sách dự án nổi bật (FootAI, Portfolio)</div>
           <div><span class="term-green">contact</span>   : Thông tin SĐT (0395 317 625), Email, GitHub</div>
+          <div><span class="term-green">phone</span>     : Sao chép nhanh số điện thoại 0395 317 625</div>
+          <div><span class="term-green">vcard</span>     : Tải danh bạ điện thoại (.vcf)</div>
           <div><span class="term-green">theme</span>     : Đổi giao diện ('theme dark' hoặc 'theme light')</div>
           <div><span class="term-green">color</span>     : Đổi tông màu ('color blue', 'violet', 'emerald', 'rose')</div>
           <div><span class="term-green">sudo hire</span> : Gửi yêu cầu tuyển dụng trực tiếp</div>
           <div><span class="term-green">clear</span>     : Làm sạch màn hình terminal</div>
+          <div><span class="term-green">exit / quit</span>: Đóng cửa sổ terminal</div>
         `);
         break;
 
@@ -457,6 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>💻 JavaScript ES6+ / DOM API: [███████░░░] 78%</div>
           <div>🐙 Git & GitHub Workflow     : [███████░░░] 75%</div>
           <div>📱 Responsive Web Design    : [████████░░] 85%</div>
+          <div>🤝 Làm việc nhóm & Tự học   : [█████████░] 90%</div>
         `);
         break;
 
@@ -477,6 +561,22 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>🌐 GitHub: <a href="https://github.com/duyhwng2301" target="_blank" style="color:#58a6ff;">github.com/duyhwng2301</a></div>
           <div>📍 Địa chỉ: Thái Nguyên, Việt Nam</div>
         `);
+        break;
+
+      case 'phone':
+        copyToClipboard('0395317625').then(() => {
+          appendTerminalLine('✅ Đã sao chép số điện thoại: <strong>0395 317 625</strong> vào bộ nhớ tạm.');
+        });
+        break;
+
+      case 'vcard':
+        downloadVCard();
+        appendTerminalLine('✅ Đã khởi chạy tải danh bạ Kiều Duy Hưng (.vcf)');
+        break;
+
+      case 'exit':
+      case 'quit':
+        closeModal(terminalModal);
         break;
 
       case 'sudo hire':
@@ -526,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 10. MODALS SYSTEM
+  // 12. MODALS SYSTEM
   // ==========================================================================
   const modals = {
     avatar: document.getElementById('modalAvatar'),
@@ -651,7 +751,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Skills Filtering Tabs
+  // ==========================================================================
+  // 13. SKILLS FILTERING TABS (Fixed for all categories including soft)
+  // ==========================================================================
   const skillTabs = document.querySelectorAll('.skill-tab-btn');
   const skillItems = document.querySelectorAll('.skill-item');
   const skillPills = document.querySelectorAll('.skill-pill');
@@ -677,10 +779,13 @@ document.addEventListener('DOMContentLoaded', () => {
           pill.style.display = 'none';
         }
       });
+      playTone(480, 'sine', 0.03, 0.02);
     });
   });
 
-  // Contact Message Form
+  // ==========================================================================
+  // 14. CONTACT FORM & MESSAGE COPY
+  // ==========================================================================
   const quickMsgForm = document.getElementById('quickMsgForm');
   if (quickMsgForm) {
     quickMsgForm.addEventListener('submit', (e) => {
@@ -695,6 +800,41 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal(modals.contact);
       showToast(getLang() === 'en' ? 'Thank you! Mail client launched.' : 'Cảm ơn bạn! Đã mở ứng dụng gửi thư.');
       quickMsgForm.reset();
+    });
+  }
+
+  // Copy message text button inside Contact Modal
+  const copyMsgBtn = document.getElementById('copyMsgBtn');
+  if (copyMsgBtn) {
+    copyMsgBtn.addEventListener('click', () => {
+      const senderName = document.getElementById('msgSenderName').value.trim();
+      const senderContact = document.getElementById('msgSenderContact').value.trim();
+      const senderMessage = document.getElementById('msgContent').value.trim();
+
+      const text = `Gửi Kiều Duy Hưng,\nHọ tên: ${senderName || '[Tên người gửi]'}\nLiên hệ: ${senderContact || '[Email/SĐT]'}\nNội dung: ${senderMessage || '[Lời nhắn]'}`;
+      copyToClipboard(text).then(() => {
+        showToast('📋 Đã sao chép nội dung tin nhắn vào bộ nhớ tạm');
+        playTone(784, 'triangle', 0.08, 0.05);
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 15. FLOATING BACK TO TOP BUTTON
+  // ==========================================================================
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      playTone(660, 'triangle', 0.05, 0.04);
     });
   }
 });

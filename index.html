@@ -262,6 +262,30 @@
             </div>
             <div class="skill-track"><div class="skill-fill" style="width: 80%;"></div></div>
           </div>
+
+          <div class="skill-item" data-category="soft">
+            <div class="skill-item-info">
+              <span data-vi="Làm việc nhóm & Giao tiếp" data-en="Teamwork & Communication">Làm việc nhóm & Giao tiếp</span>
+              <span class="skill-item-level">90%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 90%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="soft">
+            <div class="skill-item-info">
+              <span data-vi="Tư duy logic & Giải quyết vấn đề" data-en="Problem Solving & Logic">Tư duy logic & Giải quyết vấn đề</span>
+              <span class="skill-item-level">85%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 85%;"></div></div>
+          </div>
+
+          <div class="skill-item" data-category="soft">
+            <div class="skill-item-info">
+              <span data-vi="Khả năng tự học & Nghiên cứu" data-en="Self-Learning & Tech Research">Khả năng tự học & Nghiên cứu</span>
+              <span class="skill-item-level">92%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" style="width: 92%;"></div></div>
+          </div>
         </div>
 
         <div class="tag-cloud" style="margin-top: 6px;">
@@ -573,6 +597,14 @@
         </svg>
       </div>
       <p style="font-size:0.8rem; color:var(--primary); font-weight:700;">https://duyhwng2301.github.io/Ki-u-Duy-H-ng/</p>
+      <div style="display:flex; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap;">
+        <button class="btn btn-outline copy-trigger" data-copy-text="https://duyhwng2301.github.io/Ki-u-Duy-H-ng/">
+          <span>📋</span> <span data-vi="Sao chép link web" data-en="Copy Web Link">Sao chép link web</span>
+        </button>
+        <button class="btn btn-primary" id="downloadVcardBtn">
+          <span>📇</span> <span data-vi="Lưu danh bạ (.vcf)" data-en="Save Contact (.vcf)">Lưu danh bạ (.vcf)</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -606,7 +638,8 @@
           <label class="form-label" data-vi="Nội dung lời nhắn" data-en="Message">Nội dung lời nhắn</label>
           <textarea class="form-textarea" id="msgContent" rows="4" placeholder="Nội dung trao đổi công việc, lịch phỏng vấn..." required></textarea>
         </div>
-        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline" id="copyMsgBtn" data-vi="📋 Sao chép nội dung" data-en="📋 Copy Message Text">📋 Sao chép nội dung</button>
           <button type="submit" class="btn btn-primary" data-vi="🚀 Gửi Email Trực Tiếp" data-en="🚀 Send Direct Email">🚀 Gửi Email Trực Tiếp</button>
         </div>
       </form>
@@ -615,6 +648,9 @@
 
   <!-- Toast Notification -->
   <div class="toast-notice" id="toastNotice">Thông báo</div>
+
+  <!-- Floating Back To Top Button -->
+  <button class="back-to-top-btn" id="backToTopBtn" title="Lên đầu trang">↑</button>
 
   <!-- Interactive JavaScript -->
   <script src="script.js"></script>

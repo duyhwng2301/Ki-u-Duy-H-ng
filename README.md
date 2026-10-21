@@ -32,25 +32,32 @@
      - `skills`: Bảng kỹ năng kỹ thuật & điểm %
      - `projects`: Liệt kê các dự án tiêu biểu
      - `contact`: Xem số điện thoại (0395 317 625), email, địa chỉ
+     - `phone`: Sao chép nhanh số điện thoại 0395 317 625
+     - `vcard`: Tải danh bạ điện thoại (.vcf)
      - `theme dark` / `theme light`: Đổi theme trực tiếp qua lệnh
      - `color blue` / `violet` / `emerald` / `rose`: Đổi màu chủ đạo qua lệnh
      - `sudo hire`: Phản hồi tuyển dụng vui vẻ & chuyên nghiệp
      - `clear`: Xóa màn hình dòng lệnh
+     - `exit` / `quit`: Đóng cửa sổ terminal
 3. **⌨️ Typewriter Effect (Hiệu ứng máy gõ chữ):**
    - Chạy luân phiên các vai trò nghề nghiệp của Kiều Duy Hưng với con trỏ nhấp nháy công nghệ.
 4. **🔊 Web Audio API Sound Synthesizer (Âm thanh giao diện):**
    - Âm thanh click và phản hồi điện tử nhẹ nhàng, tinh tế khi tương tác; tích hợp nút bật/tắt âm thanh `🔊/🔇`.
-5. **🐙 GitHub Contribution Activity Matrix:**
+5. **📇 Tải Danh Bạ Trực Tiếp (vCard .vcf):**
+   - Nút lưu danh bạ một chạm trên điện thoại và máy tính, tự động thêm Kiều Duy Hưng vào danh bạ danh bạ điện thoại của nhà tuyển dụng.
+6. **🐙 GitHub Contribution Activity Matrix:**
    - Mô phỏng biểu đồ đóng góp commit chuẩn phong cách GitHub (420+ Contributions) thể hiện sự chăm chỉ và hoạt động code liên tục.
-6. **📸 Ảnh Chân Dung Thật & Lightbox:**
+7. **📸 Ảnh Chân Dung Thật & Lightbox:**
    - Ảnh đại diện sắc nét viền Glowing Gradient xoay nhẹ, nhấp vào để xem ảnh đầy đủ kèm nút tải về.
-7. **🎨 Bộ 4 Bảng Màu Preset (Color Accent Switcher):**
+8. **🎨 Bộ 4 Bảng Màu Preset (Color Accent Switcher):**
    - Cyber Blue, Neon Violet, Emerald Green, Cyber Rose.
-8. **🌐 Chuyển đổi Song Ngữ (VI / EN):**
+9. **🌐 Chuyển đổi Song Ngữ (VI / EN):**
    - Đổi toàn bộ nội dung sang Tiếng Anh chuyên nghiệp chỉ với 1 cú click.
-9. **📋 Sao chép 1-chạm (One-Click Copy to Clipboard):**
-   - Copy nhanh SĐT (0395 317 625), Email, Mã SV DTC235200372 và link GitHub kèm thông báo Toast nổi.
-10. **🖨️ In ấn & Xuất file PDF Chuẩn A4:**
+10. **📋 Sao chép 1-chạm (One-Click Copy to Clipboard):**
+    - Đã nâng cấp thuật toán sao chép hoạt động 100% trên cả `file:///`, localhost, mobile và HTTPS.
+11. **🔝 Nút Lên Đầu Trang (Back to Top):**
+    - Nút tròn nổi tự động xuất hiện khi cuộn trang xuống, giúp người xem quay lại đầu trang tức thì.
+12. **🖨️ In ấn & Xuất file PDF Chuẩn A4:**
     - Cấu hình `@media print` căn lề sạch sẽ, ẩn toàn bộ nút công cụ giúp CV khi in hoặc lưu PDF cực kỳ chuyên nghiệp.
 
 ---

@@ -325,6 +325,12 @@ body::before {
   transform: translateY(-1px);
 }
 
+.btn-outline.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
 .btn-cyber {
   background: rgba(37, 99, 235, 0.12);
   color: var(--primary);
@@ -338,6 +344,50 @@ body::before {
   color: #ffffff;
   box-shadow: 0 0 15px var(--primary-glow);
   transform: translateY(-1px);
+}
+
+/* Scroll Offset for Navigation Anchors */
+#about, #contact, #skills, #education, #projects {
+  scroll-margin-top: 85px;
+}
+
+/* Floating Back To Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: var(--transition);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  box-shadow: 0 0 20px var(--primary-glow);
+  transform: translateY(-3px);
 }
 
 /* ==================== MAIN CV CONTAINER ==================== */
@@ -1371,7 +1421,8 @@ body::before {
   .skills-filter-tabs,
   .avatar-hint,
   .project-action-link,
-  .github-heatmap-box {
+  .github-heatmap-box,
+  .back-to-top-btn {
     display: none !important;
   }
 
